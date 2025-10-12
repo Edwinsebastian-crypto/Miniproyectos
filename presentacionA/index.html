@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Trabajo - Proyecto</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(-45deg, #111, #222, #1a1a40, #3a0ca3);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Partículas de fondo */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255,255,255,0.5);
+      border-radius: 50%;
+      animation: float 15s infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Animaciones de entrada para contenido */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.3); opacity: 0; }
+      50% { transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    
+    .slide.active h2 {
+      animation: bounceIn 0.6s ease-out;
+    }
+
+    .slide.active li {
+      animation: fadeInUp 0.5s ease-out backwards;
+    }
+
+    .slide.active li:nth-child(1) { animation-delay: 0.1s; }
+    .slide.active li:nth-child(2) { animation-delay: 0.2s; }
+    .slide.active li:nth-child(3) { animation-delay: 0.3s; }
+    .slide.active li:nth-child(4) { animation-delay: 0.4s; }
+    .slide.active li:nth-child(5) { animation-delay: 0.5s; }
+    .slide.active li:nth-child(6) { animation-delay: 0.6s; }
+    .slide.active li:nth-child(7) { animation-delay: 0.7s; }
+    .slide.active li:nth-child(8) { animation-delay: 0.8s; }
+
+    .slide.active .menu-btn,
+    .slide.active .entity-btn {
+      animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .slide.active .menu-btn:nth-of-type(1),
+    .slide.active .entity-btn:nth-of-type(1) { animation-delay: 0.2s; }
+    .slide.active .menu-btn:nth-of-type(2),
+    .slide.active .entity-btn:nth-of-type(2) { animation-delay: 0.3s; }
+    .slide.active .menu-btn:nth-of-type(3),
+    .slide.active .entity-btn:nth-of-type(3) { animation-delay: 0.4s; }
+    .slide.active .menu-btn:nth-of-type(4),
+    .slide.active .entity-btn:nth-of-type(4) { animation-delay: 0.5s; }
+    .slide.active .menu-btn:nth-of-type(5),
+    .slide.active .entity-btn:nth-of-type(5) { animation-delay: 0.6s; }
+    .slide.active .menu-btn:nth-of-type(6),
+    .slide.active .entity-btn:nth-of-type(6) { animation-delay: 0.7s; }
+    .slide.active .menu-btn:nth-of-type(7),
+    .slide.active .entity-btn:nth-of-type(7) { animation-delay: 0.8s; }
+
+    .slide.active .requisito-detalle {
+      animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .slide.active .requisito-detalle:nth-of-type(1) { animation-delay: 0.1s; }
+    .slide.active .requisito-detalle:nth-of-type(2) { animation-delay: 0.2s; }
+    .slide.active .requisito-detalle:nth-of-type(3) { animation-delay: 0.3s; }
+    .slide.active .requisito-detalle:nth-of-type(4) { animation-delay: 0.4s; }
+    .slide.active .requisito-detalle:nth-of-type(5) { animation-delay: 0.5s; }
+    .slide.active .requisito-detalle:nth-of-type(6) { animation-delay: 0.6s; }
+    .slide.active .requisito-detalle:nth-of-type(7) { animation-delay: 0.7s; }
+    .slide.active .requisito-detalle:nth-of-type(8) { animation-delay: 0.8s; }
+
+    /* contenedor de cada slide */
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 1.3rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(100%) scale(0.95);
+      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.6s ease;
+      overflow: hidden;
+      text-align: center;
+      z-index: 1;
+    }
+
+    /* slide a la izquierda (prev) */
+    .slide.prev {
+      transform: translateX(-100%) scale(0.95);
+    }
+
+    /* slide activo */
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0) scale(1);
+      z-index: 2;
+    }
+
+    .slide .content {
+      flex: 1;
+      overflow-y: auto;
+      width: 100%;
+      padding: 80px 40px 40px;
+      box-sizing: border-box;
+    }
+
+    .slide .footer {
+      padding: 20px 0;
+    }
+
+    .slide h2 {
+      font-size: 2.0em;
+      margin-bottom: 18px;
+      margin-top: 0px;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+      position: relative;
+      display: inline-block;
+    }
+
+    .slide h2::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ff0055, #00d4ff);
+      transition: width 0.6s ease;
+    }
+
+    .slide.active h2::after {
+      width: 100%;
+    }
+    
+
+    /* 🎨 Oscurecer imágenes de fondo SOLO en las entidades */
+    #peaje::before,
+    #ubicacion::before,
+    #departamento::before,
+    #municipio::before,
+    #ruta::before,
+    #concesion::before,
+    #categoria::before,
+    #tarifa::before,
+    #contrato::before, 
+    #tarifaD::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    /* Asegurar que contenido esté por encima de la capa oscura */
+    #peaje .content, #peaje .footer,
+    #ubicacion .content, #ubicacion .footer,
+    #departamento .content, #departamento .footer,
+    #municipio .content, #municipio .footer,
+    #ruta .content, #ruta .footer,
+    #concesion .content, #concesion .footer,
+    #categoria .content, #categoria .footer,
+    #tarifa .content, #tarifa .footer,
+    #contrato .content, #contrato .footer,
+    #tarifaD .content, #tarifaD .footer {
+      position: relative;
+      z-index: 2;
+    }
+
+  
+    /* Botones principales */
+    .menu-btn {
+      background: linear-gradient(45deg, #ff0055, #ff6600);
+      color: #fff;
+      border: none;
+      padding: 18px 40px;      /* ⬅️ Más alto y ancho */
+      font-size: 1.25rem;      /* ⬅️ Texto más grande */
+      cursor: pointer;
+      border-radius: 50px;     /* ⬅️ Más redondeado */
+      margin: 10px;
+      box-shadow: 0px 7px 18px rgba(0,0,0,0.5);
+      transition: transform 0.18s, box-shadow 0.18s, background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .menu-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .menu-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    .menu-btn:hover { 
+      transform: scale(1.06) translateY(-2px); 
+      box-shadow: 0px 8px 25px rgba(0,0,0,0.7);
+    }
+    .menu-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Botones para entidades - solo resaltado, sin círculo animado */
+    #entidades .entity-btn {
+      background: linear-gradient(45deg, #0088ff, #00c6ff);
+      color: #ffffff;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 50px;
+      margin: 10px 0;
+      box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.45);
+      transition: transform 0.18s, box-shadow 0.18s, background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      overflow: visible;
+      text-align: center;
+      font-weight: 600;
+      line-height: 1.4;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    /* Elimina el círculo blanco animado */
+    #entidades .entity-btn::before,
+    #entidades .entity-btn:active::before,
+    #entidades .entity-btn:hover::before {
+      display: none !important;
+      content: none !important;
+    }
+
+    #entidades .entity-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.8);
+      background: linear-gradient(45deg, #00c6ff, #007bff);
+    }
+
+    .requisito-detalle {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 18px;
+      margin-top: 14px;
+      border-radius: 12px;
+      text-align: left;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+
+    .requisito-detalle:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,212,255,0.2);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(0,212,255,0.3);
+    }
+
+    .requisito-detalle h3 {
+      margin-bottom: 8px;
+      font-size: 1.15em;
+      color: #00d4ff;
+    }
+
+    ul { list-style: none; padding: 0; margin: 0; }
+    li { margin: 8px 0; font-size: 1.05em; }
+
+    ul li::before {
+      content: "• ";
+      color: #00d4ff;
+      font-weight: bold;
+      margin-right: 6px;
+      display: inline-block;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+
+    .peaje-slide {
+      background: url("peaje.jpg") no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    .ubicacion-slide {
+      background: url("ubicacion.jpg") no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    .concesion-slide {
+      background: url("concesion.jpeg") no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    .categoria-slide {
+      background: url("categoria.png") no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    .tarifa-slide {
+      background: url("tarifa.jpeg") no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    .departamento-slide {
+      background: url("departamento.jpg") no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    /* Fondo para flujo vehicular */
+    .municipio-slide {
+      background: url("municipio.jpg") no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+
+        /* Fondo para flujo vehicular */
+    .ruta-slide {
+      background: url("ruta.jpeg") no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+
+    .contrato-slide {
+      background: url("contrato.jpg") no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+
+
+    /* Fondo para flujo vehicular */
+    .tarifaD-slide {
+      background: url("tarifaD.png") no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+
+
+    /* Centrado del menu y entidades */
+    #menu .content,
+    #entidades .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      gap: 8px;
+    }
+
+    /* Fondo solo para la portada */
+    .portada {
+      background: url("portada.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    .en {
+      background: url("en.png") no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    
+    /* Responsivo pequeño */
+    @media (max-width:600px) {
+      .menu-btn, .entity-btn { padding: 10px 18px; font-size: .95rem; }
+      .slide { padding: 18px; font-size: .95rem; }
+    }
+
+    .progress-indicator {
+      display: none !important;
+    }
+
+    
+
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .progress-dot:hover {
+      background: rgba(255,255,255,0.6);
+      transform: scale(1.3);
+    }
+
+    .progress-dot.active {
+      background: linear-gradient(45deg, #ff0055, #00d4ff);
+      transform: scale(1.4);
+      box-shadow: 0 0 10px rgba(0,212,255,0.8);
+    }
+
+    /* Lightbox - estilos */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      padding: 20px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      overflow: hidden;
+    }
+
+    .lightbox-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: default;
+      overflow: hidden;
+    }
+
+    .lightbox-overlay {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-content {
+      transition: transform 0.08s linear;
+      transform-origin: 0 0;
+      max-width: none;
+      max-height: none;
+      user-select: none;
+      -webkit-user-drag: none;
+      cursor: grab;
+    }
+    .lightbox-content:active { cursor: grabbing; }
+
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      color: #fff;
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 2010;
+    }
+    .close:hover { color: #ff7777; }
+
+
+    /* 🔹 Mantiene el estilo actual pero centra y hace visible el texto */
+    #entidades .entity-btn {
+      background: linear-gradient(45deg, #0088ff, #00c6ff);
+      color: #ffffff;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 50px;
+      margin: 10px 0;
+      box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.45);
+      transition: transform 0.18s, box-shadow 0.18s, background 0.3s;
+      display: flex;                   /* ✅ centra horizontal y vertical */
+      align-items: center;             /* ✅ centra verticalmente el texto */
+      justify-content: center;         /* ✅ centra horizontalmente */
+      white-space: nowrap;             /* ✅ evita saltos de línea */
+      overflow: visible;               /* ✅ texto visible dentro */
+      text-align: center;
+      font-weight: 600;
+      line-height: 1.4;                /* ✅ mejor espacio interno */
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    #entidades .entity-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.8);
+      background: linear-gradient(45deg, #00c6ff, #007bff);
+    }
+        
+
+    /* Fondo semitransparente y difuminado para el panel de entidades */
+    #entidades .content {
+      background: rgba(0,0,0,0.70); /* Más opaco */
+      border-radius: 18px;
+      padding: 40px 24px 30px 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      backdrop-filter: blur(2px);
+      margin-top: 40px;
+      margin-bottom: 40px;
+      max-width: 420px;
+      width: 95vw;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 2. El título de entidades ahora SIEMPRE estará dentro del panel oscuro */
+    #entidades h2 {
+      color: #fff;
+      text-shadow: 2px 2px 10px #222, 0 0 2px #fff;
+      font-size: 2.2em;
+      margin-bottom: 28px;
+      margin-top: 0;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* 3. Centrar y limitar la imagen del modelo entidad-relación */
+    #modelo .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 60px;
+      padding-bottom: 30px;
+      min-height: 80vh;
+    }
+    #modelo .zoom-img {
+      display: block;
+      margin: 0 auto;
+      max-width: 700px;
+      width: 95vw;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      background: #fff;
+      padding: 10px;
+    }
+
+    /* 3. Centrar y limitar la imagen del modelo entidad-relación */
+    #relacion .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 60px;
+      padding-bottom: 30px;
+      min-height: 80vh;
+    }
+    #relacion .zoom-img {
+      display: block;
+      margin: 0 auto;
+      max-width: 700px;
+      width: 95vw;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      background: #fff;
+      padding: 10px;
+    }
+
+    
+
+
+    /* 4. Quitar fondo y blur de los indicadores de progreso */
+    .progress-indicator {
+      z-index: 1;
+    }
+
+    /* Panel de entidades: centra el contenido y baja el título */
+#entidades .content {
+  background: rgba(0,0,0,0.70);
+  border-radius: 28px;
+  padding: 48px 24px 36px 24px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  backdrop-filter: blur(2px);
+  margin-top: 60px; /* Más espacio arriba */
+  margin-bottom: 40px;
+  max-width: 440px;
+  width: 95vw;
+  align-items: center;
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Centra el título dentro del recuadro y lo baja un poco */
+#entidades h2 {
+  color: #fff;
+  text-shadow: 2px 2px 10px #222, 0 0 2px #fff;
+  font-size: 2.2em;
+  margin-bottom: 32px;
+  margin-top: 18px;
+  z-index: 2;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+/* Botones de entidades centrados y con ancho fijo */
+#entidades .entity-btn {
+  width: 80%;
+  min-width: 180px;
+  max-width: 320px;
+  padding: 10px 0;
+  font-size: 1.05rem;
+  margin: 12px auto;
+  white-space: normal;
+  word-break: keep-all;
+  text-align: center;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+
+/* Ajuste para evitar scroll innecesario en panel entidades */
+#entidades .content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+
+
+
+/* Permite scroll vertical en el menú principal si hay muchos botones */
+#menu .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  padding-top: 60px;
+}
+
+#menu .menu-btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-height: 60vh;
+  overflow-y: auto;
+  width: 100%;
+  margin-top: 24px;
+  padding-bottom: 40px;
+}
+
+.intro-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto; /* permite el scroll del contenido */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 5rem 2rem;
+  box-sizing: border-box;
+}
+
+.footer {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+
+
+/* Recuadro del texto (tomado del estilo del detalle de flores) */
+.love-message-content {
+  max-width: 700px;
+  background: rgba(26, 26, 26, 0.6);
+  border: 1px solid rgba(255, 187, 0, 0.2);
+  border-radius: 20px;
+  padding: 3rem;
+  backdrop-filter: blur(8px);
+  animation: section-glow 2s ease-in-out infinite;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 187, 0, 0.3);
+}
+
+/* Título y texto */
+.love-message-content h2 {
+  font-family: 'Poppins', sans-serif;
+  color: #fffefb;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.love-message-content p {
+  font-size: 1.05em;
+  line-height: 1.8;
+  text-align: justify;
+  color: #f0f0f0;
+}
+
+/* Animación de brillo */
+@keyframes section-glow {
+  0% { box-shadow: 0 0 15px rgba(200, 11, 11, 0.4); }
+  50% { box-shadow: 0 0 25px rgba(216, 6, 6, 0.7); }
+  100% { box-shadow: 0 0 15px rgba(254, 1, 13, 0.4); }
+}
+        /* 🔒 Bloquear scroll global y permitir scroll solo dentro del iframe del diccionario */
+    html, body {
+      height: 100%;
+      overflow: hidden; /* bloquea el scroll global */
+    }
+
+    /* Contenedor del diccionario ocupa toda la ventana */
+    #diccionario .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      overflow: hidden;
+      padding-top: 60px;
+    }
+
+    /* El contenedor blanco del iframe */
+    #diccionario .frame-container {
+      width: 95%;
+      max-width: 1200px;
+      height: calc(100vh - 140px); /* resta espacio del título y botón */
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+      background: #fff;
+    }
+
+    /* El iframe ocupa todo el contenedor y se puede desplazar verticalmente */
+    #diccionario iframe {
+      width: 100vw;            /* Ocupa todo el ancho visible */
+      height: 55vh;            /* Mantiene un alto cómodo, ajusta si deseas */
+      transform: scale(0.9) translateY(-0px);   /* Reduce un poco para que entre completo horizontalmente */
+      transform-origin: top left;
+      border: none;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+
+    
+
+
+
+
+  </style>
+</head>
+<body>
+  <!-- Partículas de fondo -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Indicador de progreso -->
+  <div class="progress-indicator" id="progressIndicator"></div>
+
+  <!-- Menú principal -->
+  <section class="slide active portada" id="menu" role="region" aria-labelledby="menu-title">
+  <canvas id="stars-canvas" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:1;"></canvas>
+  <div class="content" style="position:relative; z-index:2;">
+      <h2 id="menu-title">💸Conduciendo hacia la quiebra💸</h2>
+      <div class="menu-btns">
+        <button class="menu-btn" onclick="goToSlide('introducción')" role="button">Introducción</button>
+        <button class="menu-btn" onclick="goToSlide('marco')" role="button">Marco de referencia</button>
+        <button class="menu-btn" onclick="goToSlide('requisitos')" role="button">Requisitos</button>
+        <button class="menu-btn" onclick="goToSlide('entidades')" role="button">Entidades y Atributos</button>
+        <button class="menu-btn" onclick="goToSlide('modelo')" role="button">Modelo</button> 
+        <button class="menu-btn" onclick="goToSlide('relacion')" role="button">Relacion</button> 
+        <button class="menu-btn" onclick="goToSlide('diccionario')" role="button">Diccionario de datos</button> 
+        <button class="menu-btn" onclick="goToSlide('conclusiones')" role="button">Conclusiones</button> 
+        
+     
+      </div>
+  </div>
+</section>
+
+<!-- Introducción -->
+  <section class="slide" id="introducción" role="region" aria-labelledby="req-title">
+    <div class="intro-container">
+      <div class="love-message-content">
+        <h2>Introducción</h2>
+        <p>
+          ⁂El proyecto diseña un modelo entidad-relación del Sistema Nacional de
+          Información de Peajes, que organiza datos sobre peajes, concesiones,
+          categorías y tarifas para mejorar el control y la consulta de la
+          información vial en Colombia.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('menu')" role="button">⬅ Volver al Menú</button>
+    </div>
+  </section>
+
+
+  <!-- Marco de referencia -->
+  <section class="slide" id="marco" role="region" aria-labelledby="req-title">
+    <div class="intro-container">
+      <div class="love-message-content">
+        <h2>Marco de referencia</h2>
+        <p>
+          ⁂El modelo se basa en la necesidad de 
+          unificar datos de peajes publicados por
+          INVIAS, ANI y el Ministerio de Transporte,
+          siguiendo las Resoluciones 6266 y 62 de 2024,
+          para asegurar transparencia y gestión eficiente del sistema vial.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('menu')" role="button">⬅ Volver al Menú</button>
+    </div>
+  </section>
+
+   
+
+
+  <!-- Requisitos -->
+  <section class="slide" id="requisitos" role="region" aria-labelledby="req-title">
+    <div class="content">
+      <h2 id="req-title">Requisitos</h2>
+      <h3>==============================================================================</h3>
+
+      <div class="requisito-detalle">
+        <ul>
+          <li>El sistema debe registrar las rutas nacionales con su codigo, nombre y descripción, junto con las ubicaciones que incluyen corredor vial y tramo.</li>
+        </ul>
+      </div>
+      <div class="requisito-detalle">
+        <ul>
+          <li>Cada departamento debe contener uno o varios municipios, y cada peaje debe estar asociado a un departamento y municipio específicos que determinen su ubicación territorial.</li>
+        </ul>
+      </div>
+      <div class="requisito-detalle">
+        <ul>
+          <li>El sistema debe permitir registrar los peajes, indicando nombre, tipo, coordenadas (latitud y longitud) y su relación con la ubicación geográfica.</li>
+        </ul>
+      </div>
+      <div class="requisito-detalle">
+        <ul>
+          <li>Cada peaje debe estar administrado por una concesión vial, que a su vez puede tener uno o varios contratos con fecha de inicio y fin.</li>
+        </ul>
+      </div>
+      <div class="requisito-detalle">
+        <ul>
+          <li>Se deben registrar las categorías vehiculares (I a VII) con su número de ejes y subcategorías si aplica.</li>
+        </ul>
+      </div>
+      <div class="requisito-detalle">
+        <ul>
+          <li>Para cada combinación de peaje y categoría vehicular, debe existir una tarifa que registre el valor cobrado.</li>
+        </ul>
+      </div>
+      <div class="requisito-detalle">
+        <ul>
+          <li>El sistema debe permitir registrar tarifas diferenciales asociadas a un peaje y a una tarifa base.</li>
+        </ul>
+      </div>
+     
+    </div>
+
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('menu')" role="button">⬅ Volver al Menú</button>
+    </div>
+  </section>
+
+  <!-- Entidades -->
+  <section class="slide en" id="entidades" role="region" aria-labelledby="ent-title">
+    <div class="content">
+      <h2 id="ent-title">Entidades</h2>
+      <button class="entity-btn" onclick="goToSlide('peaje')" role="button">Peaje</button>
+      <button class="entity-btn" onclick="goToSlide('ubicacion')" role="button">Ubicación</button>
+      <button class="entity-btn" onclick="goToSlide('departamento')" role="button">Departamento</button>
+      <button class="entity-btn" onclick="goToSlide('municipio')" role="button">Municipio</button>
+      <button class="entity-btn" onclick="goToSlide('ruta')" role="button">Ruta nacional</button>
+      <button class="entity-btn" onclick="goToSlide('concesion')" role="button">Concesión Vial</button>
+      <button class="entity-btn" onclick="goToSlide('contrato')" role="button">Contrato</button>
+      <button class="entity-btn" onclick="goToSlide('categoria')" role="button">Categoría Vehicular</button>
+      <button class="entity-btn" onclick="goToSlide('tarifa')" role="button">Tarifa</button>
+      <button class="entity-btn" onclick="goToSlide('tarifaD')" role="button">Tarifa diferencial</button>
+    </div>
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('menu')" role="button">⬅ Volver al Menú</button>
+    </div>
+  </section>
+
+  <!-- Diapositivas de cada entidad -->
+  <section class="slide peaje-slide" id="peaje">
+    <div class="content">
+      <h2>🏗 Entidad: Peaje</h2>
+      <ul>
+        <li>ID_peaje</li>
+        <li>Nombre</li>
+        <li>Tipo</li>
+        <li>Coordenadas (latitud, longitud)</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('entidades')" role="button">⬅ Volver a Entidades</button>
+    </div>
+  </section>
+
+  <section class="slide ubicacion-slide" id="ubicacion">
+    <div class="content">
+      <h2>📍🗺️ Entidad: Ubicación</h2>
+      <ul>
+        <li>ID_ubicación</li>
+        <li>Corredor vial</li>
+        <li>Tramo vial (km inicio-fin)</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('entidades')" role="button">⬅ Volver a Entidades</button>
+    </div>
+  </section>
+
+  <section class="slide departamento-slide" id="departamento">
+    <div class="content">
+      <h2>🛣️ Entidad: Departamento</h2>
+      <ul>
+        <li>ID_departamento</li>
+        <li>Nombre</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('entidades')" role="button">⬅ Volver a Entidades</button>
+    </div>
+  </section>
+
+    <section class="slide municipio-slide" id="municipio">
+    <div class="content">
+      <h2>🏞️ Entidad: Municipio</h2>
+      <ul>
+        <li>ID_municipio</li>
+        <li>Nombre</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('entidades')" role="button">⬅ Volver a Entidades</button>
+    </div>
+  </section>
+
+  <section class="slide ruta-slide" id="ruta">
+    <div class="content">
+      <h2>🗺️ Entidad: Ruta nacional</h2>
+      <ul>
+        <li>ID_ruta</li>
+        <li>Nombre</li>
+        <li>Descripción</li>
+     </ul>
+    </div>
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('entidades')" role="button">⬅ Volver a Entidades</button>
+    </div>
+  </section>
+
+
+  <section class="slide concesion-slide" id="concesion">
+    <div class="content">
+      <h2>🏢 Entidad: Concesión Vial</h2>
+      <ul>
+        <li>ID_concesión</li>
+        <li>Nombre</li>
+        <li>Tipo</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('entidades')" role="button">⬅ Volver a Entidades</button>
+    </div>
+  </section>
+
+  <section class="slide contrato-slide" id="contrato">
+    <div class="content">
+      <h2>📊 Entidad: Contrato</h2>
+      <ul>
+        <li>N°_contrato</li>
+        <li>Entidad contratante</li>
+        <li>Fecha incio</li>
+        <li>Fecha fin</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('entidades')" role="button">⬅ Volver a Entidades</button>
+    </div>
+  </section>
+  
+  <section class="slide categoria-slide" id="categoria">
+    <div class="content">
+      <h2>🚗 Entidad: Categoría Vehicular</h2>
+      <ul>
+        <li>ID_categoria</li>
+        <li>Codigo (I-VII)</li>
+        <li>N° ejes</li>
+        <li>Subcategorías</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('entidades')" role="button">⬅ Volver a Entidades</button>
+    </div>
+  </section>
+
+
+  <section class="slide tarifa-slide" id="tarifa">
+    <div class="content">
+      <h2>💰 Entidad: Tarifa</h2>
+      <ul>
+        <li>ID_tarifa</li>
+        <li>Valor</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('entidades')" role="button">⬅ Volver a Entidades</button>
+    </div>
+  </section>
+
+
+  <section class="slide tarifaD-slide" id="tarifaD">
+    <div class="content">
+      <h2>📊 Entidad: Tarifa diferencial</h2>
+      <ul>
+        <li>ID_tarifaD</li>
+        <li>Descripción</li>
+        <li>Placa</li>
+        <li>Radio residencia km</li>
+        <li>Beneficiario</li>
+        <li>Valor</li>
+        <li>Fecha incio</li>
+        <li>Fecha fin</li>
+      </ul>
+    </div>
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('entidades')" role="button">⬅ Volver a Entidades</button>
+    </div>
+  </section>
+
+
+  <section class="slide" id="modelo">
+    <div class="content">
+     <h2>✏️Modelo Entidad-Relación</h2>
+
+     <img src="modelo.png" alt="Modelo ER" class="zoom-img"
+       style="max-width: 90%; max-height: 500px; border-radius: 15px;
+             box-shadow: 0 0 15px rgba(0,0,0,0.6); background: #fff; padding: 10px; cursor:pointer;">
+    </div>
+
+    <div class="footer">
+       <button class="menu-btn" onclick="goToSlide('menu')" role="button">⬅ Volver al Menú</button>
+    </div>
+  </section>
+
+  <section class="slide" id="relacion">
+     <div class="content">
+      <h2>✏️Modelo Relacional</h2>
+ 
+      <img src="relacion.png" alt="Modelo ER" class="zoom-img"
+        style="max-width: 90%; max-height: 500px; border-radius: 15px;
+              box-shadow: 0 0 15px rgba(0,0,0,0.6); background: #fff; padding: 10px; cursor:pointer;">
+     </div>
+ 
+     <div class="footer">
+        <button class="menu-btn" onclick="goToSlide('menu')" role="button">⬅ Volver al Menú</button>
+     </div>
+   </section>
+
+   
+   <!-- Lightbox --> 
+   <div id="lightbox" class="lightbox" aria-hidden="true">
+    <span class="close" onclick="closeLightbox()" role="button" aria-label="Cerrar">&times;</span>
+    <div class="lightbox-overlay">
+      <img id="lightbox-img" class="lightbox-content" src="" alt="Imagen ampliada">
+    </div>  
+  </div>  
+  
+  <section class="slide" id="diccionario">
+    <div class="content">
+      <h2 style="margin-bottom: 25px;">📘 Diccionario de Datos</h2>
+      
+      <div class="frame-container">
+        <iframe
+          src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTOLgWe0uiBPVKEUZkMW0pDdHVIFeZYiQayiCGpN7ZvENdlBDPJf38TfakkUtdFg29uj71FFvSvifIl/pubhtml?gid=0&single=true">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('menu')" role="button">
+        ⬅ Volver al Menú
+      </button>
+    </div>
+  </section>
+
+
+  <!-- Conclusiones -->
+  <section class="slide" id="conclusiones" role="region" aria-labelledby="req-title">
+    <div class="intro-container">
+      <div class="love-message-content">
+        <h2>Conclusiones</h2>
+        <p>
+          ⁂Este diseño ofrece una visión integral y coherente de las 
+          relaciones existentes entre las diferentes entidades que 
+          intervienen en la gestión de los peajes,
+          facilitando el almacenamiento, la consulta y el análisis de los 
+          datos de forma eficiente y confiable. 
+        </p>
+        <p>
+          ⁂Gracias por su atención… y recuerden: 
+          las preguntas se las llevan de tarea.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="menu-btn" onclick="goToSlide('menu')" role="button">⬅ Volver al Menú</button>
+    </div>
+  </section>
+
+  
+
+  <script>
+    // ========== LIGHTBOX PARA IMÁGENES ==========
+    let scale = 1;
+    let isDragging = false;
+    let startX = 0, startY = 0, translateX = 0, translateY = 0;
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(src) {
+      lightboxImg.src = src;
+      scale = 1;
+      translateX = 0;
+      translateY = 0;
+      updateTransform();
+      lightbox.style.display = 'block';
+      lightbox.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      lightboxImg.focus();
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+      lightbox.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.zoom-img').forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.setAttribute('tabindex', '0');
+      img.addEventListener('click', (e) => {
+        openLightbox(e.currentTarget.src);
+      });
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          openLightbox(e.currentTarget.src);
+        }
+      });
+    });
+
+    lightbox.addEventListener('click', function(e) {
+      if (e.target.classList.contains('lightbox-overlay')) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    lightbox.addEventListener('wheel', function(e) {
+      if (lightbox.style.display !== 'block') return;
+      e.preventDefault();
+
+      const delta = (e.deltaY < 0) ? 0.12 : -0.12;
+      const newScale = Math.min(4, Math.max(0.3, scale + delta));
+
+      const rect = lightboxImg.getBoundingClientRect();
+      const pointerX = e.clientX - rect.left;
+      const pointerY = e.clientY - rect.top;
+
+      const imgSpaceX = (pointerX - translateX) / scale;
+      const imgSpaceY = (pointerY - translateY) / scale;
+
+      translateX -= imgSpaceX * (newScale - scale);
+      translateY -= imgSpaceY * (newScale - scale);
+
+      scale = newScale;
+      updateTransform();
+    }, { passive: false });
+
+    lightboxImg.addEventListener('mousedown', function(e) {
+      if (lightbox.style.display !== 'block') return;
+      isDragging = true;
+      startX = e.clientX - translateX;
+      startY = e.clientY - translateY;
+      lightboxImg.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      translateX = e.clientX - startX;
+      translateY = e.clientY - startY;
+      updateTransform();
+    });
+
+    document.addEventListener('mouseup', function() {
+      isDragging = false;
+      lightboxImg.style.cursor = 'grab';
+    });
+
+    lightboxImg.ondragstart = () => false;
+
+    lightboxImg.addEventListener('dblclick', function() {
+      scale = 1; translateX = 0; translateY = 0;
+      updateTransform();
+    });
+
+    function updateTransform() {
+      lightboxImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+    }
+
+    // ========== GENERAR PARTÍCULAS ==========
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 30;
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+    createParticles();
+
+    // ========== NAVEGACIÓN DE SLIDES ==========
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    let currentIndex = slides.findIndex(s => s.classList.contains('active'));
+    if (currentIndex === -1) {
+      currentIndex = 0;
+      slides[0].classList.add('active');
+    }
+
+    // Crear indicadores de progreso
+    function createProgressIndicators() {
+      const progressIndicator = document.getElementById('progressIndicator');
+      progressIndicator.innerHTML = '';
+      slides.forEach((slide, index) => {
+        const dot = document.createElement('div');
+        dot.className = 'progress-dot';
+        if (index === currentIndex) dot.classList.add('active');
+        dot.onclick = () => goToSlide(slide.id);
+        dot.title = slide.querySelector('h2')?.textContent || `Slide ${index + 1}`;
+        progressIndicator.appendChild(dot);
+      });
+    }
+    createProgressIndicators();
+
+    // Actualizar indicadores
+    function updateProgressIndicators() {
+      const dots = document.querySelectorAll('.progress-dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+      });
+    }
+
+    // función para cambiar slide
+    function goToSlide(id) {
+      const targetIndex = slides.findIndex(s => s.id === id);
+      if (targetIndex === -1) {
+        console.warn('Slide no encontrado:', id);
+        return;
+      }
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === targetIndex);
+        slide.classList.toggle('prev', idx < targetIndex);
+        slide.classList.toggle('next', idx > targetIndex);
+      });
+      currentIndex = targetIndex;
+      updateProgressIndicators();
+    
+
+    }
+
+    // flechas del teclado
+    document.addEventListener('keydown', (e) => {
+      if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowRight') {
+        const next = (currentIndex + 1) % slides.length;
+        goToSlide(slides[next].id);
+      } else if (e.key === 'ArrowLeft') {
+        const prev = (currentIndex - 1 + slides.length) % slides.length;
+        goToSlide(slides[prev].id);
+      }
+    });
+
+    // ========== ANIMACIÓN DE ESTRELLAS EN EL MENÚ PRINCIPAL ==========
+    // Mejora: más movimiento y trayectorias suaves
+(function() {
+  const menu = document.getElementById('menu');
+  const canvas = document.getElementById('stars-canvas');
+  if (!canvas) return;
+  let w, h, ctx;
+  let stars = [];
+  const STAR_COUNT = 60;
+
+  function resize() {
+    w = menu.offsetWidth;
+    h = menu.offsetHeight;
+    canvas.width = w;
+    canvas.height = h;
+  }
+
+  function randomStar() {
+    const angle = Math.random() * 2 * Math.PI;
+    const speed = Math.random() * 0.45 + 0.15; // ⭐️ Más velocidad
+    return {
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 2.2 + 1.2,
+      alpha: Math.random() * 0.7 + 0.3,
+      twinkle: Math.random() * 0.07 + 0.02, // ⭐️ Twinkle más notorio
+      dx: Math.cos(angle) * speed,
+      dy: Math.sin(angle) * speed,
+      drift: Math.random() * 0.03 + 0.01,
+      driftAngle: angle
+    };
+  }
+
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push(randomStar());
+    }
+  }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, w, h);
+    for (const s of stars) {
+      ctx.save();
+      ctx.globalAlpha = s.alpha;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, 2 * Math.PI);
+      ctx.fillStyle = "#fff";
+      ctx.shadowColor = "#fff";
+      ctx.shadowBlur = 10;
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function animate() {
+    for (const s of stars) {
+      // Twinkle
+      s.alpha += (Math.random() - 0.5) * s.twinkle;
+      s.alpha = Math.max(0.18, Math.min(1, s.alpha));
+      // Movimiento principal
+      s.x += s.dx;
+      s.y += s.dy;
+      // Pequeño drift para trayectorias curvas
+      s.driftAngle += (Math.random() - 0.5) * 0.07;
+      s.dx += Math.cos(s.driftAngle) * s.drift;
+      s.dy += Math.sin(s.driftAngle) * s.drift;
+      // Rebote en bordes
+      if (s.x < 0 || s.x > w) s.dx *= -1;
+      if (s.y < 0 || s.y > h) s.dy *= -1;
+    }
+    drawStars();
+    if (menu.classList.contains('active')) {
+      requestAnimationFrame(animate);
+    } else {
+      ctx.clearRect(0, 0, w, h);
+    }
+  }
+
+  function startStars() {
+    resize();
+    createStars();
+    drawStars();
+    animate();
+  }
+
+  new ResizeObserver(startStars).observe(menu);
+  window.addEventListener('resize', resize);
+
+  const observer = new MutationObserver(() => {
+    if (menu.classList.contains('active')) startStars();
+    else ctx && ctx.clearRect(0, 0, w, h);
+  });
+  observer.observe(menu, { attributes: true, attributeFilter: ['class'] });
+
+  ctx = canvas.getContext('2d');
+  startStars();
+})();
+  </script>
+  
+ 
+
+
+</body>
+</html>
