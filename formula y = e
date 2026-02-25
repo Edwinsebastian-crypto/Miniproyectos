@@ -1,0 +1,16 @@
+
+public class nomina {
+            public static void main(String[] args) {
+
+                float base = 1.5f;
+                float exponente = 1.8f;
+
+                float y ;
+
+                y =(float) Math.exp(exponente * Math.log(base));
+                
+                System.out.println("");
+                System.out.println("\033[91mResultado:\033[0m " + y);
+
+        }
+}
