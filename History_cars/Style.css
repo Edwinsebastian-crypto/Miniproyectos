@@ -217,6 +217,10 @@ footer {
 /* Se activa solo en pantallas de 768px de ancho o menos (tablets y celulares) */
 @media (max-width: 768px) {
 
+   .audio-compacto {
+    right: 10px;   /* en vez de -60px, lo metemos DENTRO del borde de la imagen */
+  }
+
   table {
     width: 100%;           /* la tabla ocupa el ancho disponible, no un valor fijo */
     display: block;         /* permite que se comporte como un bloque scrolleable */
