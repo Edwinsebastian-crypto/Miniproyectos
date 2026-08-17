@@ -9,6 +9,7 @@ body {
   min-height: 100vh;             /* "vh" = viewport height (alto de la ventana). 100vh = el body mide al menos todo el alto visible de la pantalla, aunque haya poco contenido. */
   display: flex;                 /* Convierte al body en un contenedor "flexbox", lo que permite acomodar a sus hijos directos de forma flexible (en fila o columna). */
   flex-direction: column;        /* Dentro del flexbox, los hijos se acomodan en columna: uno debajo del otro, de arriba hacia abajo. */
+  overflow-x: hidden; /* Oculta el contenido que sobresale horizontalmente de la caja y desactiva por completo el desplazamiento (scroll) lateral en ese eje. */
 }
 
 /* ============================================================
@@ -211,4 +212,22 @@ footer {
 /* Le da un espacio extra a la última letra (por ejemplo, la 5ª letra de "EDWIN") */
 .social-icon:nth-child(5) {
   margin-right: 20px;                 /* Selecciona específicamente el 5º elemento hijo dentro de su contenedor y le agrega 20px de margen a la derecha, separándolo del resto (por ejemplo, para diferenciar nombre de apellido). */
+}
+
+/* Se activa solo en pantallas de 768px de ancho o menos (tablets y celulares) */
+@media (max-width: 768px) {
+
+  table {
+    width: 100%;           /* la tabla ocupa el ancho disponible, no un valor fijo */
+    display: block;         /* permite que se comporte como un bloque scrolleable */
+    overflow-x: auto;       /* si el contenido no cabe, el scroll queda DENTRO de la tabla, no en toda la página */
+    -webkit-overflow-scrolling: touch; /* scroll más suave en iOS */
+  }
+
+  th, td {
+    width: auto;            /* el ancho se ajusta al contenido en vez de forzar 300px */
+    min-width: 140px;       /* evita que las columnas queden demasiado angostas para leer */
+    font-size: 14px;        /* reduce un poco la letra para aprovechar mejor el espacio */
+  }
+
 }
