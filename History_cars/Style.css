@@ -1,0 +1,214 @@
+/* ============================================================
+   REGLAS GENERALES DEL DOCUMENTO (body)
+   ============================================================ */
+body {
+  min-height: 100%;              /* El body ocupa como mínimo el 100% de la altura de su contenedor padre (html). */
+  margin: 0;                     /* Quita el margen blanco que el navegador pone por defecto alrededor de toda la página. */
+  background-color: #5e6265;     /* Color de fondo: un gris oscuro (casi negro), definido en formato hexadecimal RGB. */
+  color: #dce3e9;                /* Color del texto por defecto: un blanco grisáceo suave, para que contraste bien con el fondo oscuro. */
+  min-height: 100vh;             /* "vh" = viewport height (alto de la ventana). 100vh = el body mide al menos todo el alto visible de la pantalla, aunque haya poco contenido. */
+  display: flex;                 /* Convierte al body en un contenedor "flexbox", lo que permite acomodar a sus hijos directos de forma flexible (en fila o columna). */
+  flex-direction: column;        /* Dentro del flexbox, los hijos se acomodan en columna: uno debajo del otro, de arriba hacia abajo. */
+}
+
+/* ============================================================
+   LISTAS (ul y li) — color de texto
+   ============================================================ */
+ul, li {
+  color: #dce3e9;                /* Mismo gris claro que el body, para que el texto de las listas se vea igual de legible sobre el fondo oscuro. */
+}
+
+/* ============================================================
+   TABLAS — reglas compartidas por table, th (encabezado) y td (celda)
+   ============================================================ */
+table, th, td {
+  border-collapse: collapse;     /* Une los bordes de las celdas en una sola línea, en vez de mostrar doble borde entre celda y celda. */
+  border: 1px solid black;       /* Borde de 1 píxel de grosor, línea sólida (no punteada), de color negro. */
+  margin: 70px auto 40px auto;   /* Margen exterior en orden arriba-derecha-abajo-izquierda: 70px arriba, auto a los lados (centra horizontalmente), 40px abajo. */
+}
+
+/* Encabezados de las tablas (<th>) */
+th {
+  height: 50px;                  /* Alto fijo de la celda de encabezado: 50 píxeles. */
+  width: 300px;                  /* Ancho fijo de la celda de encabezado: 300 píxeles. */
+  font-size: 20px;                /* Tamaño de la letra dentro del encabezado: 20 píxeles. */
+}
+
+/* Celdas de datos de la tabla (<td>) */
+td {
+  height: 50px;                  /* Alto fijo de cada celda de datos: 50 píxeles (igual que el encabezado, para que la tabla se vea uniforme). */
+  width: 300px;                  /* Ancho fijo de cada celda de datos: 300 píxeles. */
+  text-align: center;            /* Centra horizontalmente el texto dentro de la celda. */
+  font-size: 18px;                /* Tamaño de letra: 18 píxeles (un poco más pequeño que el del encabezado, para diferenciar jerarquía). */
+}
+
+/* ============================================================
+   SUBTÍTULO (clase .subtitulo)
+   ============================================================ */
+.subtitulo {
+  color: #f0f2f5;                        /* Color de texto casi blanco (un gris muy claro), para resaltar sobre el fondo oscuro. */
+  text-align: center;                    /* Centra el texto horizontalmente dentro de su contenedor. */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                                          /* Lista de fuentes en orden de preferencia: si 'Segoe UI' no está instalada, prueba Tahoma, luego Geneva, luego Verdana, y si ninguna existe usa cualquier fuente "sans-serif" (sin remates) del sistema. */
+  text-transform: uppercase;             /* Convierte automáticamente todo el texto a MAYÚSCULAS, sin importar cómo esté escrito en el HTML. */
+  letter-spacing: 2px;                   /* Añade 2 píxeles de espacio extra entre cada letra, para dar un aire más "premium"/elegante. */
+  font-size: 16px;                        /* Tamaño de letra: 16 píxeles, discreto porque es un subtítulo. */
+  font-weight: 400;                       /* Grosor de la letra: 400 = "normal" (la escala va de 100=muy delgada a 900=muy gruesa). */
+  opacity: 0.85;                          /* Opacidad del elemento completo: 0.85 = 85% visible / 15% transparente, para suavizarlo un poco frente al título principal. */
+}
+
+/* ============================================================
+   ENCABEZADO DE SECCIÓN (h2) — usado para cada automóvil
+   ============================================================ */
+h2 {
+  margin-top: 40px;                       /* Espacio de 40 píxeles antes del encabezado (separa esta sección de la anterior). */
+
+  border-bottom: 3px solid #ffb703;       /* Línea decorativa debajo del texto: 3px de grosor, sólida, color dorado/amarillo deportivo (#ffb703). */
+  display: table;                         /* Hace que el elemento se comporte como una tabla en cuanto a tamaño: su ancho se ajusta exactamente al texto que contiene (así el borde inferior no ocupa toda la fila, solo el ancho del texto). */
+
+  margin-left: auto;                      /* Junto con margin-right: auto, centra horizontalmente el bloque (porque su ancho ya no es 100% gracias a display: table). */
+  margin-right: auto;                     /* Ver comentario de la línea anterior: completa el centrado horizontal. */
+  margin-bottom: 30px;                    /* Espacio de 30 píxeles después del encabezado, antes del contenido que sigue. */
+  padding-bottom: 15px;                   /* Espacio interno de 15 píxeles entre el texto y la línea dorada de abajo (border-bottom), para que no queden pegados. */
+
+  background: linear-gradient(180deg, rgb(85, 8, 8) 40%, rgb(140, 20, 20) 100%);
+                                           /* Crea un degradado de color: 180deg = de arriba hacia abajo. Empieza en un vino oscuro rgb(85,8,8) hasta el 40% del elemento, y termina en un vino más claro rgb(140,20,20) en el 100% (parte final). Este degradado se usará como "relleno" del texto, no como fondo visible normal. */
+  -webkit-background-clip: text;          /* Recorta ese fondo (el degradado de arriba) para que solo se vea dentro de la forma de las letras del texto, como una plantilla/stencil. Requiere el prefijo -webkit- para funcionar en navegadores basados en Chrome/Safari. */
+  -webkit-text-fill-color: transparent;   /* Hace transparente el color de relleno normal del texto, para que en su lugar se vea el degradado recortado por la línea anterior. */
+
+  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.7));
+                                           /* Sombra proyectada: 2px de desplazamiento horizontal, 4px vertical, 10px de difuminado, color negro con 70% de opacidad (rgba con el último valor 0.7). Le da volumen/profundidad al texto. */
+}
+
+/* ============================================================
+   CONTENEDOR DE IMAGEN (clase .img-container)
+   ============================================================ */
+.img-container {
+  position: relative;             /* Convierte a este elemento en el "punto de referencia" para cualquier hijo con position: absolute dentro de él (en este caso, el botón de audio). Es OBLIGATORIO para que ese hijo no se posicione respecto a toda la página. */
+  display: flex;                  /* Activa flexbox para poder centrar fácilmente la imagen que contiene. */
+  justify-content: center;        /* Centra horizontalmente el contenido (la imagen) dentro del contenedor flex. */
+  margin-bottom: 20px;            /* Espacio de 20 píxeles después del contenedor, antes del siguiente elemento. */
+  max-width: 800px;               /* El contenedor nunca crecerá más de 800 píxeles de ancho, sin importar el tamaño de la pantalla. */
+  margin-left: auto;              /* Junto con margin-right: auto, centra el contenedor horizontalmente en la página (útil porque tiene max-width). */
+  margin-right: auto;             /* Ver línea anterior: completa el centrado horizontal del contenedor. */
+}
+
+/* La imagen dentro del contenedor */
+.img-container img {
+  display: block;                 /* Elimina el espacio extra que las imágenes suelen dejar debajo (por ser "inline" por defecto) y la trata como un bloque independiente. */
+  width: 100%;                    /* La imagen ocupa el 100% del ancho de su contenedor (.img-container, que mide hasta 800px). */
+  height: auto;                    /* La altura se calcula automáticamente para mantener la proporción original de la imagen (evita que se vea estirada o deformada). */
+}
+
+/* Botón/ícono de audio compacto, superpuesto sobre la imagen */
+.audio-compacto {
+  position: absolute;             /* Se posiciona de forma libre usando coordenadas (top/right/bottom/left), tomando como referencia al padre más cercano con position: relative (.img-container). */
+  bottom: 0px;                    /* Queda pegado exactamente al borde inferior del contenedor (0 píxeles de separación). */
+  right: -60px;                   /* Se desplaza 60 píxeles HACIA AFUERA del borde derecho del contenedor (el valor negativo lo saca del área visible de la imagen). */
+
+  width: 45px;                    /* Ancho del botón: 45 píxeles (lo suficientemente pequeño para mostrar solo el ícono de reproducir). */
+  height: 45px;                    /* Alto del botón: 45 píxeles, igual al ancho para mantenerlo cuadrado (necesario para que el border-radius forme un círculo perfecto). */
+  border-radius: 50%;             /* Redondea las esquinas al 50%, lo que convierte un cuadrado perfecto en un círculo perfecto. */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+                                   /* Sombra del elemento (no del texto): 0px de desplazamiento horizontal, 4px vertical, 10px de difuminado, color negro al 50% de opacidad. Da sensación de que el botón "flota" sobre la foto. */
+  z-index: 10;                    /* Controla el orden de apilamiento en el eje Z (profundidad): un valor alto como 10 asegura que el botón se dibuje ENCIMA de la imagen y no debajo. */
+}
+
+/* ============================================================
+   TÍTULO PRINCIPAL DE LA PÁGINA (h1)
+   ============================================================ */
+h1 {
+  font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+                                   /* Igual que en .subtitulo: intenta usar 'Montserrat' primero, si no existe usa 'Helvetica Neue', y si tampoco existe, cualquier fuente sans-serif del sistema. */
+  font-weight: 300;                /* Grosor de letra 300 = delgada/liviana, para dar una sensación elegante y no recargada. */
+  font-size: 45px;                  /* Tamaño de letra grande: 45 píxeles, apropiado para un título principal. */
+  text-align: center;              /* Centra el texto horizontalmente. */
+  color: #1a1a1a;                  /* Color de texto casi negro (gris muy oscuro). Nota: como el body ya tiene fondo oscuro, este color solo se notará bien si h1 tiene su propio fondo claro o va sobre una imagen clara. */
+  text-transform: uppercase;       /* Convierte el texto a MAYÚSCULAS automáticamente. */
+  letter-spacing: 6px;             /* Separa cada letra 6 píxeles extra, dando un efecto más "espaciado" y llamativo que el subtítulo (que usa 2px). */
+
+  border-bottom: 3px solid #ffb703; /* Misma línea decorativa dorada que en h2: 3px, sólida, color #ffb703. */
+  display: table;                   /* Igual que en h2: hace que el ancho del elemento se ajuste solo al texto, para que la línea inferior no cruce toda la pantalla. */
+  margin: 70px auto 40px auto;      /* Margen arriba-lados-abajo: 70px arriba, centrado automático a los lados, 40px abajo. */
+  padding-bottom: 15px;              /* Espacio entre el texto y la línea dorada inferior: 15 píxeles. */
+}
+
+/* ============================================================
+   LISTA PRINCIPAL (ul) — contenedor de los elementos
+   ============================================================ */
+ul {
+  list-style: none;               /* Elimina los puntos/viñetas negras que los navegadores muestran por defecto en las listas. */
+  padding: 0;                      /* Quita el espacio interno izquierdo que el navegador agrega por defecto a las listas (donde normalmente irían los puntos). */
+  max-width: 650px;                /* La lista nunca será más ancha de 650 píxeles, para que el texto no se estire demasiado en pantallas grandes. */
+  margin: 40px auto;               /* 40px de margen arriba y abajo, y "auto" a los lados: esto centra el bloque completo de la lista en la página. */
+}
+
+/* Cada elemento individual de la lista (<li>) */
+li {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                                   /* Misma familia de fuentes que .subtitulo, para mantener consistencia visual. */
+  font-size: 18px;                  /* Tamaño de letra: 18 píxeles, cómodo para leer texto de lista. */
+  line-height: 1.6;                /* Altura de línea: 1.6 veces el tamaño de la letra. Da más "aire" entre líneas cuando el texto ocupa más de un renglón, mejorando la legibilidad. */
+  padding: 15px 20px;               /* Espacio interno: 15px arriba/abajo y 20px a los lados, entre el borde del elemento y su texto. */
+  margin-bottom: 12px;              /* Separa cada elemento de la lista del siguiente con 12 píxeles de espacio. */
+  background: rgba(255, 255, 255, 0.05);
+                                   /* Fondo blanco (255,255,255) pero casi invisible: solo 5% de opacidad (0.05). Crea un efecto sutil de "tarjeta" translúcida sobre el fondo oscuro general. */
+  border-left: 4px solid #ffb703;  /* Una línea vertical de 4 píxeles, sólida, color dorado, pegada al borde izquierdo de cada elemento — funciona como un "acento" visual. */
+  border-radius: 4px;               /* Redondea ligeramente las 4 esquinas del elemento (4 píxeles de radio), suavizando su forma rectangular. */
+  transition: transform 0.2s ease;  /* Define una animación suave: cuando la propiedad "transform" cambie (ver li:hover más abajo), lo hará en 0.2 segundos con una curva de aceleración "ease" (empieza y termina suave). */
+}
+
+/* Efecto al pasar el mouse sobre un elemento de la lista */
+li:hover {
+  transform: translateX(8px);      /* Mueve el elemento 8 píxeles hacia la derecha en el eje X, cuando el cursor está encima. Gracias a la "transition" de arriba, este movimiento se ve animado y no brusco. */
+  background: rgba(255, 255, 255, 0.1);
+                                   /* Aumenta la opacidad del fondo blanco de 5% a 10%, haciendo que la "tarjeta" se vea un poco más brillante/resaltada al pasar el mouse. */
+}
+
+/* ============================================================
+   PIE DE PÁGINA (footer)
+   ============================================================ */
+footer {
+  background-color: #000000;       /* Fondo negro puro (000000 = ausencia total de rojo, verde y azul). */
+  padding: 30px 20px;                /* Espacio interno: 30px arriba/abajo, 20px a los lados, entre el borde del footer y su contenido. */
+  margin-top: auto;                  /* Truco de flexbox: como el body es "display: flex" con "flex-direction: column", este margen automático empuja al footer hacia el final de la página, aunque haya poco contenido arriba (footer "pegajoso" al fondo). */
+  border-top: 1px solid #222222;    /* Línea delgada (1px) en la parte superior del footer, de un gris muy oscuro casi negro, para separarlo sutilmente del contenido de arriba. */
+  width: 100%;                       /* El footer ocupa el 100% del ancho disponible, de borde a borde de la pantalla. */
+  box-sizing: border-box;            /* Cambia cómo se calcula el ancho total: con esto, el padding y el borde se incluyen DENTRO del 100% de ancho, en vez de sumarse aparte (evita que el footer se desborde de la pantalla). */
+}
+
+/* Contenedor interno que centra el contenido del footer */
+.footer-container {
+  max-width: 1200px;                /* El contenido interno del footer nunca superará los 1200 píxeles de ancho, aunque la pantalla sea más grande. */
+  margin: 0 auto;                    /* 0 arriba/abajo y "auto" a los lados: centra este contenedor horizontalmente dentro del footer. */
+  display: flex;                     /* Activa flexbox para poder alinear fácilmente los elementos internos (los íconos de redes). */
+  justify-content: center;           /* Centra horizontalmente los elementos hijos dentro del contenedor flex. */
+  align-items: center;               /* Centra verticalmente los elementos hijos dentro del contenedor flex. */
+}
+
+/* Agrupa las "burbujas" con las letras del nombre */
+.footer-socials {
+  display: flex;                     /* Pone los íconos uno al lado del otro en fila (comportamiento por defecto de flex). */
+  gap: 15px;                          /* Deja un espacio de 15 píxeles entre cada burbuja/ícono, sin necesidad de usar márgenes individuales. */
+}
+
+/* Cada enlace individual con apariencia de icono circular */
+.social-icon {
+  width: 32px;                        /* Ancho del círculo: 32 píxeles. */
+  height: 32px;                        /* Alto del círculo: 32 píxeles (igual al ancho, necesario para que sea un círculo perfecto y no un óvalo). */
+  background-color: #ffb703;          /* Color de fondo del círculo: el mismo dorado/amarillo usado en las líneas decorativas de h1, h2 y li. */
+  color: #090909;                      /* Color de la letra dentro del círculo: negro casi puro, para que contraste fuerte contra el fondo dorado. */
+  border-radius: 50%;                  /* Redondea el elemento al 50%, convirtiendo el cuadrado de 32x32px en un círculo perfecto. */
+  display: flex;                       /* Activa flexbox para poder centrar la letra fácilmente dentro del círculo. */
+  align-items: center;                 /* Centra la letra verticalmente dentro del círculo. */
+  justify-content: center;             /* Centra la letra horizontalmente dentro del círculo. */
+  text-decoration: none;               /* Quita el subrayado que los navegadores ponen por defecto a los enlaces (<a>). */
+  font-family: sans-serif;             /* Usa cualquier fuente sin remates disponible en el sistema (sencilla, sin lista de alternativas). */
+  font-weight: bold;                   /* Pone la letra en negrita, para que se lea con fuerza dentro del círculo pequeño. */
+  font-size: 14px;                      /* Tamaño de letra: 14 píxeles, ajustado para caber cómodamente dentro de un círculo de 32px. */
+}
+
+/* Le da un espacio extra a la última letra (por ejemplo, la 5ª letra de "EDWIN") */
+.social-icon:nth-child(5) {
+  margin-right: 20px;                 /* Selecciona específicamente el 5º elemento hijo dentro de su contenedor y le agrega 20px de margen a la derecha, separándolo del resto (por ejemplo, para diferenciar nombre de apellido). */
+}

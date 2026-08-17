@@ -1,0 +1,211 @@
+<!DOCTYPE html> <!-- Declara que el documento usa el estándar HTML5. Le indica al navegador que interprete el código con las reglas modernas de HTML. -->
+
+<html lang="en"> <!-- Abre la etiqueta raíz de todo el documento. El atributo lang="en" dice que el idioma principal del contenido es inglés (ayuda a lectores de pantalla y a buscadores). -->
+
+<head> <!-- Inicia la sección <head>: aquí va información SOBRE la página (metadatos), no contenido visible. -->
+
+    <!-- Codificación que permite mostrar correctamente letras y símbolos. -->
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8, para que tildes, ñ, emojis y símbolos especiales se vean correctamente. -->
+
+    <!-- Ajusta el tamaño visual del sitio a teléfonos y otros dispositivos. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura la vista en móviles: width=device-width iguala el ancho de la página al ancho real del dispositivo; initial-scale=1.0 evita que la página aparezca con zoom al abrirla. -->
+
+    <!-- Nombre mostrado en la pestaña del navegador. -->
+    <title>HISTORY CARS</title> <!-- Texto que aparece en la pestaña del navegador y como título en resultados de búsqueda. No se ve dentro de la página. -->
+
+    <!-- Enlaza los estilos definidos en el archivo Style.css. -->
+    <link rel="stylesheet" type="text/css" href="Style.css"> <!-- Vincula un archivo CSS externo. rel="stylesheet" indica que es una hoja de estilos, type="text/css" el tipo de archivo, y href="Style.css" la ruta donde el navegador debe buscarlo (en la misma carpeta que este HTML). -->
+
+</head> <!-- Cierra la sección <head>. -->
+
+<body> <!-- Abre el <body>: aquí va TODO lo que el usuario ve y puede interactuar en la página. Es el "padre" de todos los elementos visibles. -->
+
+    <!-- Título principal del sitio web. -->
+    <h1>The Golden Era of Cars</h1> <!-- Encabezado de nivel 1 (el más importante en la jerarquía de títulos, del 1 al 6). Debe haber solo un h1 por página; aquí es el título principal. -->
+
+    <!-- Texto secundario que describe el tema de la página. -->
+    <h3 class="subtitulo">Discover the fascinating stories behind 5 legendary classic cars</h3> <!-- Encabezado de nivel 3 (más pequeño/menos importante que h1 y h2). class="subtitulo" no cambia el comportamiento del HTML, solo le "engancha" los estilos que definiste en el CSS para esa clase. -->
+
+    <!-- Lista que enumera los cinco automóviles que se explican después. -->
+    <ul> <!-- Abre una lista desordenada. Es el elemento PADRE; cada <li> de adentro es un HIJO directo de este <ul>. -->
+        <li> Ford GT40: La venganza contra Ferrari</li> <!-- <li> = "list item". Cada uno es un hijo del <ul> y representa un punto/elemento de la lista. -->
+        <li> Lamborghini Miura: La rebelión secreta de los ingenieros</li> <!-- 2º hijo del <ul>. -->
+        <li> Porsche 911: El peso de un legado familiar</li> <!-- 3º hijo del <ul>. -->
+        <li> Chevrolet Corvette: El rescate de una leyenda americana</li> <!-- 4º hijo del <ul>. -->
+        <li> Volkswagen Escarabajo: De la oscuridad a un ícono de paz</li> <!-- 5º hijo del <ul>. (Esta es la misma lógica de "5º hijo" que viste en .social-icon:nth-child(5) del CSS, pero aplicada aquí a mano, sin selector). -->
+    </ul> <!-- Cierra la lista desordenada. -->
+
+
+    <!-- ============================================================
+         SECCIÓN 1: FORD GT40
+         ============================================================ -->
+
+    <h2> → Ford GT40 ← </h2> <!-- Encabezado de nivel 2: título de esta sección de auto. Recibe el estilo dorado con degradado definido en el CSS para "h2". -->
+
+    <div class="img-container"> <!-- Abre un <div> (contenedor genérico, sin significado propio) con la clase "img-container". Es el PADRE de la imagen y del audio que van adentro; en el CSS es lo que tiene position: relative para poder ubicar el audio encima de la foto. -->
+        <!-- Imagen; alt ofrece una descripción alternativa si la imagen no carga. -->
+        <img src="FORD_GT40.jpg" alt="FORD_GT40" width="800" height="600"> <!-- Etiqueta de imagen (no se cierra con </img>, es "auto-cerrada"). src = ruta del archivo de imagen. alt = texto alternativo que se lee si la imagen no carga o para lectores de pantalla (accesibilidad). width/height = tamaño en píxeles reservado para la imagen, para que la página no "salte" mientras carga. -->
+
+        <!-- El audio ahora vive dentro del contenedor de la imagen -->
+        <audio controls class="audio-compacto"> <!-- Etiqueta que crea un reproductor de audio. El atributo "controls" (sin valor) hace que aparezcan los botones de play/pausa/volumen del navegador. class="audio-compacto" le aplica el estilo circular flotante definido en el CSS. -->
+            <source src="Motor_gt40.mp3" type="audio/mpeg"> <!-- Hijo del <audio>: indica DE DÓNDE sacar el sonido. src = ruta del archivo MP3. type="audio/mpeg" le dice al navegador el formato exacto, para que sepa cómo decodificarlo. -->
+        </audio> <!-- Cierra el elemento <audio>. -->
+    </div> <!-- Cierra el <div class="img-container">. -->
+
+    <table> <!-- Abre una tabla. Es el PADRE de todas las filas (<tr>) que contiene. -->
+    <tr> <!-- "table row": abre la primera fila, la de encabezados. Es hijo directo de <table>. -->
+        <th>El origen</th> <!-- "table header": celda de encabezado, hijo de <tr>. El navegador la muestra en negrita y centrada por defecto (y aquí además con el estilo de tu CSS: 50px alto, 300px ancho, 20px de letra). -->
+        <th>La obsesión</th> <!-- 2ª celda de encabezado. -->
+        <th>El nacimiento</th> <!-- 3ª celda de encabezado. -->
+        <th>El triunfo</th> <!-- 4ª celda de encabezado. -->
+    </tr> <!-- Cierra la fila de encabezados. -->
+    <tr> <!-- Abre la segunda fila, la de datos/contenido. -->
+        <td>A inicios de los 60s, Henry Ford II intentó comprar Ferrari, pero Enzo Ferrari canceló el trato a último minuto.</td> <!-- "table data": celda de contenido normal (no encabezado), hijo de este <tr>. Se alinea al centro y con 18px de letra según tu CSS. -->
+        <td>Furioso, Ford ordenó crear un auto exclusivo para humillar a Ferrari en las 24 Horas de Le Mans.</td> <!-- Corresponde a la columna "La obsesión". -->
+        <td>Tras fracasar, Ford reclutó a Carroll Shelby, quien rediseñó el auto e integró un motor V8 americano.</td> <!-- Corresponde a la columna "El nacimiento". -->
+        <td>El Ford GT40 logró un histórico triplete en Le Mans en 1966, rompiendo el dominio de Ferrari.</td> <!-- Corresponde a la columna "El triunfo". -->
+    </tr> <!-- Cierra la fila de datos. -->
+    </table> <!-- Cierra la tabla del Ford GT40. -->
+
+
+    <!-- ============================================================
+         SECCIÓN 2: LAMBORGHINI MIURA
+         ============================================================ -->
+
+    <h2> → Lamborghini Miura ← </h2> <!-- Título de la sección del Lamborghini Miura (misma estructura que la sección anterior, solo cambia el contenido). -->
+
+    <div class="img-container"> <!-- Contenedor padre de la imagen y el audio del Miura. -->
+        <!-- Imagen representativa del Lamborghini Miura. -->
+        <img src="Lamborghini_Miura.jpg" alt="Lamborghini_Miura" width="800" height="600"> <!-- Imagen del Miura: mismo patrón que la anterior (src, alt, width, height). -->
+        <audio controls class="audio-compacto"> <!-- Reproductor de audio del Miura. -->
+            <source src="Motor_miura.mp3" type="audio/mpeg"> <!-- Archivo MP3 con el sonido del motor del Miura. -->
+        </audio> <!-- Cierra el audio. -->
+    </div> <!-- Cierra el contenedor de imagen y audio. -->
+
+    <table> <!-- Tabla con la historia del Miura. -->
+    <tr> <!-- Fila de encabezados. -->
+        <th>El origen</th> <!-- Encabezado 1. -->
+        <th>La filosofía</th> <!-- Encabezado 2. -->
+        <th>El desarrollo clandestino</th> <!-- Encabezado 3. -->
+        <th>El nacimiento</th> <!-- Encabezado 4. -->
+    </tr> <!-- Cierra fila de encabezados. -->
+    <tr> <!-- Fila de datos. -->
+        <td>Ferruccio Lamborghini fabricaba tractores y fundó su marca de autos porque Enzo Ferrari ignoró sus quejas sobre el embrague de su Ferrari.</td> <!-- Columna "El origen". -->
+        <td>Ferruccio quería autos de gran turismo refinados, prohibiendo a sus ingenieros diseñar autos de carreras.</td> <!-- Columna "La filosofía". -->
+        <td>Tres ingenieros trabajaron en secreto por las noches para crear un chasis con el motor en el centro.</td> <!-- Columna "El desarrollo clandestino". -->
+        <td>Cuando le mostraron el concepto a Ferruccio, quedó impresionado y aprobó su producción, creando el Miura en 1966, considerado el primer "superdeportivo" de la historia.</td> <!-- Columna "El nacimiento". -->
+    </tr> <!-- Cierra fila de datos. -->
+    </table> <!-- Cierra tabla del Miura. -->
+
+
+    <!-- ============================================================
+         SECCIÓN 3: PORSCHE 911
+         ============================================================ -->
+
+    <h2> → Porsche 911 ← </h2> <!-- Título de la sección del Porsche 911. -->
+
+    <div class="img-container"> <!-- Contenedor padre de imagen y audio del 911. -->
+        <!-- Imagen representativa del Porsche 911. -->
+        <img src="Porsche911.png" alt="Porsche911" width="800" height="600"> <!-- Imagen del Porsche 911, en formato PNG (a diferencia de las anteriores en .jpg). -->
+        <audio controls class="audio-compacto"> <!-- Reproductor de audio del 911. -->
+            <source src="Motor_porsche.mp3" type="audio/mpeg"> <!-- Sonido del motor del Porsche. -->
+        </audio> <!-- Cierra el audio. -->
+    </div> <!-- Cierra el contenedor. -->
+
+    <table> <!-- Tabla con la historia del Porsche 911. -->
+    <tr> <!-- Fila de encabezados. -->
+        <th>El origen</th>
+        <th>El diseño</th>
+        <th>El conflicto del nombre</th>
+        <th>El nacimiento</th>
+    </tr> <!-- Cierra fila de encabezados. -->
+    <tr> <!-- Fila de datos. -->
+        <td>A finales de los 50s, Porsche necesitaba un sustituto para su exitoso pero ya anticuado modelo 356.</td>
+        <td>Ferdinand Alexander "Butzi" Porsche, nieto del fundador, diseñó las líneas fluidas y atemporales de un coupé deportivo de cuatro plazas.</td>
+        <td>El auto se presentó en 1963 como "Porsche 901", pero la marca Peugeot protestó porque tenían los derechos exclusivos de nombrar autos con tres dígitos y un cero en medio.</td>
+        <td>Porsche simplemente cambió el cero por un uno, dando origen en 1964 al legendario Porsche 911, un ícono que mantiene su silueta esencial más de 60 años después.</td>
+    </tr> <!-- Cierra fila de datos. -->
+    </table> <!-- Cierra tabla del Porsche 911. -->
+
+
+    <!-- ============================================================
+         SECCIÓN 4: CHEVROLET CORVETTE
+         ============================================================ -->
+
+    <h2> → Chevrolet Corvette ← </h2> <!-- Título de la sección del Corvette. -->
+
+    <div class="img-container"> <!-- Contenedor padre de imagen y audio del Corvette. -->
+        <!-- Imagen representativa del Chevrolet Corvette. -->
+        <img src="Corvette.png" alt="Corvette" width="800" height="600"> <!-- Imagen del Corvette. -->
+        <audio controls class="audio-compacto"> <!-- Reproductor de audio del Corvette. -->
+            <source src="Motor_corvette.mp3" type="audio/mpeg"> <!-- Sonido del motor del Corvette. -->
+        </audio> <!-- Cierra el audio. -->
+    </div> <!-- Cierra el contenedor. -->
+
+    <table> <!-- Tabla con la historia del Corvette. -->
+    <tr> <!-- Fila de encabezados. -->
+        <th>El origen</th>
+        <th>El tropiezo</th>
+        <th>El salvador</th>
+        <th>El nacimiento</th>
+    </tr> <!-- Cierra fila de encabezados. -->
+    <tr> <!-- Fila de datos. -->
+        <td>Harley Earl, el jefe de diseño de General Motors, notó que los soldados estadounidenses que regresaban de Europa tras la Segunda Guerra Mundial preferían los autos deportivos británicos y europeos.</td>
+        <td>El primer Corvette nació en 1953 con una carrocería de fibra de vidrio innovadora, pero su motor de 6 cilindros era lento y su transmisión automática decepcionó a los entusiastas. Estuvo a punto de ser cancelado.</td>
+        <td>El ingeniero Zora Arkus-Duntov (un piloto europeo) se enamoró del concepto y convenció a GM de instalar un potente motor V8 y mejorar la suspensión.</td>
+        <td>Gracias a esta reingeniería y a la feroz competencia con el Ford Thunderbird, el Corvette se transformó en el verdadero "auto deportivo de América".</td>
+    </tr> <!-- Cierra fila de datos. -->
+    </table> <!-- Cierra tabla del Corvette. -->
+
+
+    <!-- ============================================================
+         SECCIÓN 5: VOLKSWAGEN ESCARABAJO
+         ============================================================ -->
+
+    <h2> → Volkswagen Escarabajo ← </h2> <!-- Título de la sección del Escarabajo. -->
+
+    <div class="img-container"> <!-- Contenedor padre de imagen y audio del Escarabajo. -->
+        <!-- Imagen representativa del Volkswagen Escarabajo. -->
+        <img src="Volkswagen.png" alt="Volkswagen" width="800" height="600"> <!-- Imagen del Escarabajo. -->
+        <audio controls class="audio-compacto"> <!-- Reproductor de audio del Escarabajo. -->
+            <source src="Motor_volkswagen.mp3" type="audio/mpeg"> <!-- Sonido del motor del Escarabajo. -->
+        </audio> <!-- Cierra el audio. -->
+    </div> <!-- Cierra el contenedor. -->
+
+    <table> <!-- Tabla con la historia del Escarabajo. -->
+    <tr> <!-- Fila de encabezados. -->
+        <th>El origen</th>
+        <th>La posguerra</th>
+        <th>El renacimiento</th>
+        <th>El nacimiento</th>
+    </tr> <!-- Cierra fila de encabezados. -->
+    <tr> <!-- Fila de datos. -->
+        <td>En la década de 1930, el régimen alemán encargó al ingeniero Ferdinand Porsche el diseño de un "auto del pueblo" (Volkswagen), barato, robusto y capaz de transportar a una familia.</td>
+        <td>Tras la Segunda Guerra Mundial, la fábrica quedó en ruinas. El ejército británico tomó el control de la planta y ofreció el diseño a marcas como Ford, quienes lo rechazaron argumentando que el auto era "demasiado feo y ruidoso".</td>
+        <td>Bajo la dirección de Heinz Nordhoff, la producción se reinició enfocándose en la máxima confiabilidad y un marketing brillante y honesto (como la famosa campaña "Think Small").</td>
+        <td>El Escarabajo (Beetle) superó su oscuro origen político para convertirse en el símbolo de la contracultura de los años 60, el auto más vendido del mundo en una sola plataforma y un ícono global de simpatía.</td>
+    </tr> <!-- Cierra fila de datos. -->
+    </table> <!-- Cierra tabla del Escarabajo. -->
+
+    <!-- Pie de página con la firma del autor. -->
+    <footer> <!-- Abre el pie de página (<footer> es una etiqueta semántica: le dice al navegador y a los buscadores "esto es información de cierre/créditos", a diferencia de un <div> genérico). -->
+    <div class="footer-container"> <!-- Contenedor padre que centra todo el contenido del footer (según el CSS: max-width 1200px y flex centrado). -->
+
+        <!-- Agrupa los enlaces circulares que forman el nombre. -->
+        <div class="footer-socials"> <!-- Contenedor padre de las 9 letras/burbujas. Cada <a> de abajo es un HIJO directo de este div (aquí es donde aplicaría, por ejemplo, :nth-child(5) para seleccionar la letra "N", que es el 5º hijo). -->
+        <!-- Usamos letras temporales, luego puedes cambiarlas por iconos reales -->
+        <a href="#" class="social-icon">E</a> <!-- Enlace (<a>). href="#" es un enlace "vacío" que no lleva a ninguna página real (placeholder, para reemplazar después por un enlace de verdad). 1er hijo del div .footer-socials. -->
+        <a href="#" class="social-icon">D</a> <!-- 2º hijo. -->
+        <a href="#" class="social-icon">W</a> <!-- 3º hijo. -->
+        <a href="#" class="social-icon">I</a> <!-- 4º hijo. -->
+        <a href="#" class="social-icon">N</a> <!-- 5º hijo: este es exactamente el que recibe el margin-right: 20px extra del CSS (.social-icon:nth-child(5)), para separar "EDWIN" de "LEAL". -->
+        <a href="#" class="social-icon">L</a> <!-- 6º hijo: empieza el apellido. -->
+        <a href="#" class="social-icon">E</a> <!-- 7º hijo. -->
+        <a href="#" class="social-icon">A</a> <!-- 8º hijo. -->
+        <a href="#" class="social-icon">L</a> <!-- 9º hijo. -->
+        </div> <!-- Cierra el contenedor de redes sociales/letras. -->
+    </div> <!-- Cierra el contenedor principal del footer. -->
+    </footer> <!-- Cierra el pie de página. -->
+
+</body> <!-- Cierra el <body>: fin de todo el contenido visible de la página. -->
+</html> <!-- Cierra la etiqueta raíz <html>. Todo el documento debe estar contenido entre <html> y </html>. -->
