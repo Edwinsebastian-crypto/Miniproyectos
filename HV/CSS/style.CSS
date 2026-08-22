@@ -21,7 +21,7 @@
 
 #hoja_de_vida {
    /* Cambia la distribución para empujar las cosas a los extremos */
-  display: flex;                     /* Activa flexbox específicamente para esta pantalla (sobreescribe el "display: none" heredado de .pantalla cuando esta pantalla está activa). */
+  
   flex-direction: column;             /* Los hijos (header, main, footer) se acomodan en columna. */
   justify-content: space-between;     /* Distribuye el espacio disponible EMPUJANDO el primer hijo hacia arriba y el último hacia abajo, dejando el espacio libre entre ellos (así el footer queda al fondo aunque el contenido sea corto). */
   align-items: center;                /* Mantiene todo centrado horizontalmente. */
