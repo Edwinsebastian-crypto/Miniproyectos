@@ -3,7 +3,6 @@
 #documento {
   background-color: #40282c; /* Tu fondo vinotinto oscuro original */
   color: #f5ebeb;             /* Color de texto por defecto de esta pantalla: un blanco rosado muy suave. */
-  display: flex;               /* Activa flexbox (necesario para que esta pantalla se muestre cuando sea el ":target" activo, según la regla .pantalla:target { display: flex } de style.css). */
   flex-direction: column;       /* Sus hijos (main, footer) se acomodan en columna, uno debajo del otro. */
   justify-content: space-between; /* Empuja el contenido principal hacia arriba y el footer hacia abajo, dejando el espacio libre entre ambos. */
   align-items: center;             /* Centra horizontalmente el contenido. */
