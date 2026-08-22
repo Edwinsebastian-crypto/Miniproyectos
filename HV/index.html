@@ -4,8 +4,8 @@
   <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8, para que tildes, ñ y símbolos especiales se vean bien. -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la vista en móviles: el ancho de la página iguala al del dispositivo y no aparece zoom al abrir. -->
   <title>Welcome to the jungle</title> <!-- Texto que aparece en la pestaña del navegador. No se ve dentro de la página. -->
-  <link rel="stylesheet" href="../CSS/style.CSS"> <!-- Enlaza la hoja de estilos principal. rel="stylesheet" indica que es CSS; href apunta a la carpeta "Css" un nivel arriba de donde está este HTML (carpeta "Html"). Nota: el archivo real se llama "style.Css" (con C mayúscula) — en servidores sensibles a mayúsculas/minúsculas (como Linux, que usa Vercel) esto puede no cargar; conviene que coincidan exactamente. -->
-  <link rel="stylesheet" href="../CSS/doc.CSS"> <!-- Enlaza una SEGUNDA hoja de estilos, exclusiva para la pantalla "Documento". Se pueden enlazar varios CSS; el navegador los aplica en el orden en que aparecen. -->
+  <link rel="stylesheet" href="CSS/style.CSS"> <!-- Enlaza la hoja de estilos principal. rel="stylesheet" indica que es CSS; href apunta a la carpeta "Css" un nivel arriba de donde está este HTML (carpeta "Html"). Nota: el archivo real se llama "style.Css" (con C mayúscula) — en servidores sensibles a mayúsculas/minúsculas (como Linux, que usa Vercel) esto puede no cargar; conviene que coincidan exactamente. -->
+  <link rel="stylesheet" href="CSS/doc.CSS"> <!-- Enlaza una SEGUNDA hoja de estilos, exclusiva para la pantalla "Documento". Se pueden enlazar varios CSS; el navegador los aplica en el orden en que aparecen. -->
 </head> <!-- Cierra la sección de metadatos. -->
 <body> <!-- Abre el cuerpo: aquí va todo el contenido visible de la página. -->
 
@@ -39,7 +39,7 @@
       <div class ="bloque"> <!-- Contenedor genérico con clase "bloque" (le da separación inferior). Nota: hay un espacio extra antes del "=" en class ="bloque"; es válido en HTML, el navegador lo ignora, pero por prolijidad se recomienda escribirlo sin ese espacio: class="bloque". -->
         <h3>FOTO DE PERFIL</h3> <!-- Subtítulo de esta subsección. -->
       <div class="bloque-foto"> <!-- Contenedor que centra horizontalmente la imagen (usa display: flex; justify-content: center en el CSS). -->
-        <img src="../Img/Foto.jpeg" alt="Foto de Edwin Leal" class="foto-perfil"> <!-- Imagen de perfil. src apunta a la carpeta "Img" un nivel arriba. alt describe la imagen (accesibilidad / si no carga). class="foto-perfil" la vuelve circular, de 150x150px, con borde y sombra (definido en el CSS). -->
+        <img src="Img/Foto.jpeg" alt="Foto de Edwin Leal" class="foto-perfil"> <!-- Imagen de perfil. src apunta a la carpeta "Img" un nivel arriba. alt describe la imagen (accesibilidad / si no carga). class="foto-perfil" la vuelve circular, de 150x150px, con borde y sombra (definido en el CSS). -->
       </div> <!-- Cierra el contenedor que centra la foto. -->
       </div> <!-- Cierra el bloque "FOTO DE PERFIL". -->
         <div class="bloque"> <!-- Nuevo bloque, hermano del anterior (mismo padre: <section class="columna-izq">). -->
@@ -136,7 +136,7 @@
       <h3>1. ¿Qué es CSS?</h3> <!-- Subtítulo de esta sección. -->
       <p><strong>CSS</strong> (Cascading Style Sheets o Hojas de Estilo en Cascada) es el lenguaje de diseño utilizado para controlar la apariencia, formato y presentación visual de los documentos estructurados en HTML. Se encarga de definir los colores, fuentes, espaciados, alineaciones y la disposición de las pantallas (layouts) en los navegadores.</p> <!-- Párrafo explicativo. <strong> resalta la palabra "CSS" con negrita y énfasis semántico. -->
       <div class="bloque-foto"> <!-- Contenedor que centra la imagen (mismo estilo reutilizado de style.css). -->
-        <img src="../Img/CSSimg.jpg" alt="Foto de CSS" class="foto-perfil" style="margin-top: 20px; width: 40%; max-width: 200px; border-radius: 10px;"> <!-- Imagen ilustrativa. El style inline SOBREESCRIBE algunas propiedades que ya trae la clase "foto-perfil" desde el CSS (por ejemplo, foto-perfil normalmente es 150x150px circular; aquí width:40% y border-radius:10px cambian esas reglas SOLO para esta imagen puntual, porque los estilos inline tienen más prioridad que los del archivo CSS). -->
+        <img src="Img/CSSimg.jpg" alt="Foto de CSS" class="foto-perfil" style="margin-top: 20px; width: 40%; max-width: 200px; border-radius: 10px;"> <!-- Imagen ilustrativa. El style inline SOBREESCRIBE algunas propiedades que ya trae la clase "foto-perfil" desde el CSS (por ejemplo, foto-perfil normalmente es 150x150px circular; aquí width:40% y border-radius:10px cambian esas reglas SOLO para esta imagen puntual, porque los estilos inline tienen más prioridad que los del archivo CSS). -->
       </div> <!-- Cierra el contenedor de la imagen. -->
     </article> <!-- Cierra la sección "¿Qué es CSS?". -->
 
@@ -174,7 +174,7 @@
       </div> <!-- Cierra el contenedor grid de 2 columnas. -->
 
       <div class="bloque-foto"> <!-- Contenedor que centra la siguiente imagen. -->
-        <img src="../Img/img.png" alt="Foto de CSS/HTML" class="foto-perfil" style="margin-top: 20px; width: 100%; max-width: 200px; border-radius: 10px;"> <!-- Imagen ilustrativa. Igual que la anterior, el style inline sobreescribe el tamaño/forma que traería por defecto la clase "foto-perfil". width:100% aquí significa "ocupa el 100% de su contenedor", pero como también tiene max-width:200px, nunca superará los 200px reales. -->
+        <img src="Img/img.png" alt="Foto de CSS/HTML" class="foto-perfil" style="margin-top: 20px; width: 100%; max-width: 200px; border-radius: 10px;"> <!-- Imagen ilustrativa. Igual que la anterior, el style inline sobreescribe el tamaño/forma que traería por defecto la clase "foto-perfil". width:100% aquí significa "ocupa el 100% de su contenedor", pero como también tiene max-width:200px, nunca superará los 200px reales. -->
       </div> <!-- Cierra el contenedor de la imagen. -->
     </article> <!-- Cierra la sección "Ventajas y Desventajas". -->
 
