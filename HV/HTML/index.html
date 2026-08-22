@@ -1,0 +1,276 @@
+<!DOCTYPE html> <!-- Declara que este documento usa el estándar HTML5, para que el navegador lo interprete con las reglas modernas. -->
+<html lang="es"> <!-- Etiqueta raíz de todo el documento. lang="es" indica que el idioma principal del contenido es español (ayuda a lectores de pantalla, traductores automáticos y buscadores). -->
+<head> <!-- Sección de metadatos: información SOBRE la página, no contenido visible directamente. -->
+  <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8, para que tildes, ñ y símbolos especiales se vean bien. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Ajusta la vista en móviles: el ancho de la página iguala al del dispositivo y no aparece zoom al abrir. -->
+  <title>Welcome to the jungle</title> <!-- Texto que aparece en la pestaña del navegador. No se ve dentro de la página. -->
+  <link rel="stylesheet" href="../CSS/style.CSS"> <!-- Enlaza la hoja de estilos principal. rel="stylesheet" indica que es CSS; href apunta a la carpeta "Css" un nivel arriba de donde está este HTML (carpeta "Html"). Nota: el archivo real se llama "style.Css" (con C mayúscula) — en servidores sensibles a mayúsculas/minúsculas (como Linux, que usa Vercel) esto puede no cargar; conviene que coincidan exactamente. -->
+  <link rel="stylesheet" href="../CSS/doc.CSS"> <!-- Enlaza una SEGUNDA hoja de estilos, exclusiva para la pantalla "Documento". Se pueden enlazar varios CSS; el navegador los aplica en el orden en que aparecen. -->
+</head> <!-- Cierra la sección de metadatos. -->
+<body> <!-- Abre el cuerpo: aquí va todo el contenido visible de la página. -->
+
+  <!-- PANTALLA 1: MENÚ PRINCIPAL -->
+  <div id="menu-principal" class="pantalla"> <!-- Contenedor de la primera "pantalla". id="menu-principal" es un identificador ÚNICO (solo puede haber un elemento con este id en toda la página); se usa para poder enlazarlo con "#menu-principal" desde otros lugares. class="pantalla" le aplica el estilo compartido por las 3 pantallas (position: fixed, ocupa toda la ventana, oculta por defecto). -->
+    <h1>PANTALLA DE INICIO</h1> <!-- Encabezado de nivel 1: título principal de esta pantalla. -->
+    <h3>«Andábamos sin buscarnos, pero sabiendo que andábamos para encontrarnos».</h3> <!-- Encabezado de nivel 3: aquí se usa como una cita/frase, no como un título jerárquico real (es una elección de diseño para aprovechar el estilo ya definido para h3). -->
+    <h2> Julio Cortázar</h2> <!-- Encabezado de nivel 2: autor de la cita. -->
+    <p style="margin-top: 30px; letter-spacing: 2px;">Seleccione:</p> <!-- Párrafo con estilo "inline" (escrito directo en el HTML, no en el CSS): margin-top separa 30px del elemento de arriba, letter-spacing separa las letras 2px. Los estilos inline tienen más prioridad que los del archivo CSS. -->
+    <div> <!-- Contenedor genérico (sin clase ni id) que agrupa los dos botones de navegación. Es el PADRE de los dos enlaces <a> de abajo. -->
+      <a href="#hoja_de_vida" class="btn">Hoja de vida</a> <!-- Enlace: href="#hoja_de_vida" no lleva a otra página, sino al elemento de ESTA MISMA página que tenga id="hoja_de_vida" (ver más abajo). class="btn" le da la apariencia de botón redondeado definida en el CSS. -->
+      <a href="#documento" class="btn">Documento</a> <!-- Igual que el anterior, pero apunta al id="documento" (la tercera pantalla). -->
+    </div> <!-- Cierra el contenedor de los botones. -->
+  </div> <!-- Cierra la pantalla del menú principal. -->
+
+
+  <!-- PANTALLA 2: PANTALLA Hoja de vida -->
+  <div id="hoja_de_vida" class="pantalla" style="background-color: #4c5851; color: rgb(180, 164, 164);"> <!-- Segunda pantalla. id="hoja_de_vida" es el destino al que apunta el botón "Hoja de vida" del menú. class="pantalla" le da el comportamiento compartido (oculta por defecto, se muestra al ser el "target" de la URL). El style inline le pone un color de fondo verde grisáceo y texto gris rosado, propios SOLO de esta pantalla. -->
+
+    <!-- Encabezado superior -->
+  <header class="hdv-header"> <!-- <header> es una etiqueta semántica: le indica al navegador/buscador "esto es la cabecera introductoria de esta sección". class="hdv-header" centra el texto y le da margen inferior. -->
+    <h1>Hoja de vida</h1> <!-- Título principal de esta pantalla. -->
+    <h2>Edwin Sebastian Leal Isidro</h2> <!-- Nombre completo, como subtítulo. -->
+    <h2>Ingeniero de Sistemas / Desarrollador Full Stack</h2> <!-- Cargo/rol profesional, mismo nivel de encabezado que el nombre. -->
+  </header> <!-- Cierra la cabecera. -->
+
+    <main class="hdv-cuerpo"> <!-- <main> es semántica: marca el contenido PRINCIPAL de esta pantalla (a diferencia del header y footer, que son secundarios). class="hdv-cuerpo" activa el diseño de 2 columnas (CSS Grid) definido en el CSS. -->
+        <section class="columna-izq"> <!-- <section> agrupa un bloque temático independiente: aquí, la columna izquierda del currículum. -->
+
+           <!-- FOTO DE PERFIL -->
+      <div class ="bloque"> <!-- Contenedor genérico con clase "bloque" (le da separación inferior). Nota: hay un espacio extra antes del "=" en class ="bloque"; es válido en HTML, el navegador lo ignora, pero por prolijidad se recomienda escribirlo sin ese espacio: class="bloque". -->
+        <h3>FOTO DE PERFIL</h3> <!-- Subtítulo de esta subsección. -->
+      <div class="bloque-foto"> <!-- Contenedor que centra horizontalmente la imagen (usa display: flex; justify-content: center en el CSS). -->
+        <img src="../Img/Foto.jpeg" alt="Foto de Edwin Leal" class="foto-perfil"> <!-- Imagen de perfil. src apunta a la carpeta "Img" un nivel arriba. alt describe la imagen (accesibilidad / si no carga). class="foto-perfil" la vuelve circular, de 150x150px, con borde y sombra (definido en el CSS). -->
+      </div> <!-- Cierra el contenedor que centra la foto. -->
+      </div> <!-- Cierra el bloque "FOTO DE PERFIL". -->
+        <div class="bloque"> <!-- Nuevo bloque, hermano del anterior (mismo padre: <section class="columna-izq">). -->
+          <h3>PERFIL PROFESIONAL</h3> <!-- Subtítulo de esta subsección. -->
+          <p> <!-- Párrafo con la descripción profesional. El texto dentro de <p> respeta los espacios en blanco/saltos de línea del HTML solo de forma visual limitada: el navegador los colapsa en espacios simples al renderizar, así que el resultado en pantalla es un párrafo normal, sin saltos de línea "raros". -->
+              Ingeniero de sistemas enfocado en el desarrollo de software y la gestión de infraestructura tecnológica. 
+              Con experiencia en diseño de bases de datos, optimización de procesos y resolución de problemas técnicos.
+              Capacidad para liderar equipos de trabajo y entregar soluciones 
+              informáticas eficientes orientadas a los objetivos de la organización
+          </p> <!-- Cierra el párrafo. -->
+        </div> <!-- Cierra el bloque "PERFIL PROFESIONAL". -->
+        <div class="bloque"> <!-- Nuevo bloque: tecnologías. -->
+        <h3>TECNOLOGÍAS</h3> <!-- Subtítulo. -->
+        <ul> <!-- Lista desordenada. Es el PADRE de los 3 <li> de abajo. -->
+          <li><strong>Lenguajes:</strong> JavaScript, Python, Java, SQL, PostgreSQL</li> <!-- <strong> pone el texto en negrita Y le da importancia semántica (a diferencia de <b>, que solo es visual). Este <li> es hijo del <ul>. -->
+          <li><strong>Frameworks:</strong> React, Node.js, Spring Boot</li> <!-- 2º hijo del <ul>. -->
+          <li><strong>Herramientas:</strong> Git, Docker, AWS, Linux</li> <!-- 3º hijo del <ul>. -->
+        </ul> <!-- Cierra la lista de tecnologías. -->
+      </div> <!-- Cierra el bloque "TECNOLOGÍAS". -->
+
+      <div class="bloque"> <!-- Nuevo bloque: contacto. -->
+      <h3>CONTACTO Y ENLACES</h3> <!-- Subtítulo. -->
+      <ul> <!-- Lista de enlaces de contacto. -->
+        <li><strong>GitHub:</strong> <a href="https://github.com/Edwinsebastian-crypto/Miniproyectos" target="_blank" class="link-contacto">https://github.com//Edwin-Leal </a></li> <!-- href = URL real a la que lleva el enlace (el repositorio de GitHub). target="_blank" hace que se abra en una PESTAÑA NUEVA en vez de reemplazar la página actual. Ojo: el TEXTO visible del enlace ("https://github.com//Edwin-Leal") no coincide con el href real — visualmente muestra una URL distinta a la que en verdad abre; conviene igualarlos para no confundir al usuario. class="link-contacto" le da el estilo de subrayado punteado gris. -->
+        <li><strong>WhatsApp:</strong> <a href="https://wa.me" target="_blank" class="link-contacto"> +57 317 143 2591 </a></li> <!-- El href="https://wa.me" por sí solo no lleva a ningún chat específico (le falta el número, ej. https://wa.me/573171432591); tal como está, solo abre la página genérica de WhatsApp Web. -->
+        <li><strong>Correo:</strong> <a href="https://mail.google.com" target="_blank" class="link-contacto"> eleal3@udi.edu.co</a></li> <!-- Similar: href="https://mail.google.com" abre Gmail en general, no compone un correo nuevo dirigido a esa dirección. Para eso se usaría href="mailto:eleal3@udi.edu.co". -->
+      </ul> <!-- Cierra la lista de contacto. -->
+    </div> <!-- Cierra el bloque "CONTACTO Y ENLACES". -->
+      </section> <!-- Cierra la columna izquierda. -->
+
+        <!-- Columna Derecha (Experiencia y Educación) -->
+    <section class="columna-der"> <!-- Segunda columna del grid de 2 columnas (más ancha, según el CSS: minmax(0,1fr) minmax(0,2fr)). -->
+      <div class="bloque"> <!-- Bloque de experiencia laboral. -->
+        <h3>EXPERIENCIA LABORAL</h3> <!-- Subtítulo. -->
+        <div class="item"> <!-- Un "item" individual de experiencia (permite darle un margen/tratamiento propio, distinto del bloque general). -->
+          <h4>Desarrollador Full Stack - Tech Solutions (2034 - Presente)</h4> <!-- Encabezado de nivel 4: cargo, empresa y periodo. -->
+          <ul> <!-- Lista de logros/tareas de este puesto. -->
+            <li>Lideré la migración completa de aplicaciones monolíticas a arquitecturas de microservicios en AWS, incrementando la escalabilidad del sistema y mejorando los tiempos de respuesta globales en un 35%.</li>
+            <li>Diseñé e implementé interfaces de usuario dinámicas con React y arquitecturas backend robustas en Node.js, asegurando una comunicación fluida y segura mediante APIs RESTful estructuradas.</li>
+            <li>Automaticé los flujos de despliegue continuo (CI/CD) mediante GitHub Actions, reduciendo los errores manuales en producción y acelerando los tiempos de entrega de nuevas funciones en un 25%.</li>
+            <li>Colaboré activamente en células ágiles bajo metodología Scrum, participando en la toma de decisiones técnicas y realizando revisiones de código (code reviews) para mantener altos estándares de calidad.</li>
+          </ul> <!-- Cierra la lista de logros. -->
+        </div> <!-- Cierra el ítem "Tech Solutions". -->
+        <div class="item" style="margin-top: 15px;"> <!-- Segundo ítem de experiencia. El style inline añade 15px de espacio arriba, para separarlo del ítem anterior (además del que ya da .item por CSS, si tuviera). -->
+          <h4>Analista de Sistemas y Datos | SoftGlobal (2028 - 2034)</h4> <!-- Cargo, empresa y periodo anterior. -->
+          <ul> <!-- Lista de logros de este puesto. -->
+            <li>Diseñé y automaticé pipelines de extracción de datos (ETL) utilizando Python, disminuyendo en un 20% el procesamiento manual de reportes.</li>
+            <li>Desarrollé APIs REST integradas con sistemas de terceros, asegurando la consistencia y seguridad en los flujos de autenticación de usuarios.</li>
+            <li>Supervisé el mantenimiento preventivo y correctivo de los servidores Linux de la compañía, logrando una disponibilidad del sistema (uptime) del 99.9%.</li>
+          </ul> <!-- Cierra la lista de logros. -->
+        </div> <!-- Cierra el ítem "SoftGlobal". -->
+      </div> <!-- Cierra el bloque "EXPERIENCIA LABORAL". -->
+
+      <div class="bloque"> <!-- Bloque de educación. -->
+        <h3>EDUCACIÓN</h3> <!-- Subtítulo. -->
+        <div class="item"> <!-- Ítem de educación. -->
+          <h4>Pregrado en Ingeniería de Sistemas</h4> <!-- Título del programa académico. -->
+          <ul> <!-- Detalles del pregrado. -->
+            <li>Universidad Nacional de Ingeniería (Graduado en 2030)</li>
+            <li> Arquitectura de Software y Seguridad Informática. Tesis de grado meritoria en automatización de redes de datos.</li>
+          </ul> <!-- Cierra los detalles. -->
+        </div> <!-- Cierra el ítem de educación. -->
+      </div> <!-- Cierra el bloque "EDUCACIÓN". -->
+
+            <!-- BLOQUE DE AFICIONES (Columna Izquierda) -->
+      <div class="bloque"> <!-- Bloque de aficiones. El comentario dice "Columna Izquierda" pero en realidad este <div> está dentro de <section class="columna-der">, así que visualmente aparece en la columna DERECHA — es un comentario del autor original que quedó desactualizado, no afecta el funcionamiento. -->
+        <h3>AFICIONES</h3> <!-- Subtítulo. -->
+        <ul class="lista-aficiones"> <!-- Lista con una clase propia ("lista-aficiones"), aunque no se ve definida con estilos propios en el CSS que revisamos — por ahora hereda el estilo genérico de .bloque ul. -->
+          <li><strong>Ajedrez:</strong> Desarrolla el pensamiento estratégico.</li>
+          <li><strong>Videojuegos:</strong> Cooperativos y de estrategia en tiempo real.</li>
+          <li><strong>Contribuciones:</strong> Proyectos de código abierto (Open Source).</li>
+          <li><strong>Lectura:</strong> Documentación técnica y novelas de ciencia ficción.</li>
+        </ul> <!-- Cierra la lista de aficiones. -->
+      </div> <!-- Cierra el bloque "AFICIONES". -->
+
+    </section> <!-- Cierra la columna derecha. -->
+
+    </main> <!-- Cierra el contenido principal de la pantalla "Hoja de vida". -->
+
+    <footer class ="hdv-footer"> <!-- <footer> semántico: pie de esta pantalla. Nota: mismo detalle del espacio antes del "=" que en class ="bloque" de más arriba; es válido pero conviene escribirlo sin espacio: class="hdv-footer". -->
+        <a href="#menu-principal" class="btn_1">Volver al Menú</a> <!-- Enlace que regresa al id="menu-principal" (primera pantalla). class="btn_1" le da apariencia de botón verde. -->
+    </footer> <!-- Cierra el pie de esta pantalla. -->
+
+  </div> <!-- Cierra la pantalla completa "Hoja de vida" (el div abierto con id="hoja_de_vida"). -->
+
+  <!-- PANTALLA 3: PANTALLA Documento -->
+  <div id="documento" class="pantalla" style="background-color: #40282c; color: rgb(180, 164, 164);"> <!-- Tercera pantalla. id="documento" es el destino del botón "Documento" del menú. El style inline le da un fondo vinotinto oscuro y texto gris rosado propios de esta pantalla. -->
+
+    <main class="doc-contenido"> <!-- Contenido principal de esta pantalla. class="doc-contenido" limita el ancho a 900px y lo centra (según doc.css). -->
+    <h1 class="doc-titulo-principal">FUNDAMENTOS WEB: HTML & CSS</h1> <!-- Título principal de esta pantalla, con su propio estilo (line dorada/gris inferior, tamaño 2.2rem). -->
+
+    <!-- 1. ¿QUÉ ES CSS? -->
+    <article class="doc-seccion"> <!-- <article> semántica: marca un bloque de contenido independiente y autocontenido (aquí, cada "pregunta" del documento). class="doc-seccion" le da fondo translúcido, borde izquierdo y separación. -->
+      <h3>1. ¿Qué es CSS?</h3> <!-- Subtítulo de esta sección. -->
+      <p><strong>CSS</strong> (Cascading Style Sheets o Hojas de Estilo en Cascada) es el lenguaje de diseño utilizado para controlar la apariencia, formato y presentación visual de los documentos estructurados en HTML. Se encarga de definir los colores, fuentes, espaciados, alineaciones y la disposición de las pantallas (layouts) en los navegadores.</p> <!-- Párrafo explicativo. <strong> resalta la palabra "CSS" con negrita y énfasis semántico. -->
+      <div class="bloque-foto"> <!-- Contenedor que centra la imagen (mismo estilo reutilizado de style.css). -->
+        <img src="../Img/CSSimg.jpg" alt="Foto de CSS" class="foto-perfil" style="margin-top: 20px; width: 40%; max-width: 200px; border-radius: 10px;"> <!-- Imagen ilustrativa. El style inline SOBREESCRIBE algunas propiedades que ya trae la clase "foto-perfil" desde el CSS (por ejemplo, foto-perfil normalmente es 150x150px circular; aquí width:40% y border-radius:10px cambian esas reglas SOLO para esta imagen puntual, porque los estilos inline tienen más prioridad que los del archivo CSS). -->
+      </div> <!-- Cierra el contenedor de la imagen. -->
+    </article> <!-- Cierra la sección "¿Qué es CSS?". -->
+
+    <!-- 2. IMPORTANCIA -->
+    <article class="doc-seccion"> <!-- Segunda sección/pregunta. -->
+      <h3>2. Importancia de HTML y CSS</h3> <!-- Subtítulo. -->
+      <p>HTML y CSS son los dos pilares fundamentales del desarrollo web moderno. Su importancia radica en la <strong>separación de responsabilidades</strong>:</p> <!-- Párrafo introductorio. -->
+      <ul> <!-- Lista con los dos roles (HTML vs CSS). -->
+        <li><strong>HTML crea el esqueleto:</strong> Define qué elementos existen en la página (textos, imágenes, formularios).</li>
+        <li><strong>CSS crea la experiencia:</strong> Convierte un documento plano de texto en un entorno visualmente atractivo, intuitivo, accesible y estético para el usuario final. Sin CSS, la web actual sería completamente ilegible.</li>
+      </ul> <!-- Cierra la lista. -->
+    </article> <!-- Cierra la sección "Importancia". -->
+
+    <!-- 3. VENTAJAS Y DESVENTAJAS -->
+    <article class="doc-seccion"> <!-- Tercera sección. -->
+      <h3>3. Ventajas y Desventajas</h3> <!-- Subtítulo. -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 10px;"> <!-- Contenedor con estilo inline que crea una cuadrícula (grid) de DOS columnas de igual ancho (1fr 1fr = cada una ocupa una fracción igual del espacio disponible), con 20px de separación entre ellas y 10px de margen arriba. Todo esto escrito directamente en el HTML en vez de en el CSS. -->
+        <div> <!-- Columna 1 del grid: ventajas. -->
+          <strong style="color: #81c784;">Ventajas:</strong> <!-- Texto en negrita con color verde claro (#81c784) definido directamente aquí, sin usar el CSS externo. -->
+          <ul> <!-- Lista de ventajas. -->
+            <li>Estandarizados y compatibles con todos los navegadores modernos.</li>
+            <li>Fáciles de aprender e implementar.</li>
+            <li>CSS permite reutilizar código aplicando un solo estilo a múltiples pantallas.</li>
+            <li>Excelente rendimiento de carga en la web.</li>
+          </ul> <!-- Cierra lista de ventajas. -->
+        </div> <!-- Cierra columna de ventajas. -->
+        <div> <!-- Columna 2 del grid: desventajas. -->
+          <strong style="color: #e57373;">Desventajas:</strong> <!-- Negrita con color rojo claro (#e57373), para contrastar visualmente con el verde de "Ventajas". -->
+          <ul> <!-- Lista de desventajas. -->
+            <li>HTML/CSS por sí solos crean páginas estáticas (necesitan JS para lógica compleja).</li>
+            <li>CSS puede volverse difícil de mantener en proyectos gigantescos.</li>
+            <li>Inconsistencias visuales menores entre navegadores antiguos si no se tiene cuidado.</li>
+          </ul> <!-- Cierra lista de desventajas. -->
+        </div> <!-- Cierra columna de desventajas. -->
+      </div> <!-- Cierra el contenedor grid de 2 columnas. -->
+
+      <div class="bloque-foto"> <!-- Contenedor que centra la siguiente imagen. -->
+        <img src="../Img/img.png" alt="Foto de CSS/HTML" class="foto-perfil" style="margin-top: 20px; width: 100%; max-width: 200px; border-radius: 10px;"> <!-- Imagen ilustrativa. Igual que la anterior, el style inline sobreescribe el tamaño/forma que traería por defecto la clase "foto-perfil". width:100% aquí significa "ocupa el 100% de su contenedor", pero como también tiene max-width:200px, nunca superará los 200px reales. -->
+      </div> <!-- Cierra el contenedor de la imagen. -->
+    </article> <!-- Cierra la sección "Ventajas y Desventajas". -->
+
+    <!-- 4. SELECTORES Y EJEMPLOS -->
+    <article class="doc-seccion"> <!-- Cuarta sección. -->
+      <h3>4. Selectores CSS y Ejemplos Sencillos</h3> <!-- Subtítulo. -->
+      <p>Los selectores le indican a CSS a qué elementos del HTML debe aplicar los estilos. Existen diferentes tipos:</p> <!-- Párrafo introductorio. -->
+
+      <ul> <!-- Lista de tipos de selectores. -->
+        <li><strong>Selector Básico (Etiqueta):</strong> Afecta a todas las etiquetas de ese tipo en la página.</li>
+        <li><strong>Selector de Clase (.):</strong> Se usa para dar estilo a varios elementos específicos. Se define en HTML con <code>class=""</code>.</li> <!-- <code> muestra el texto interior con fuente monoespaciada (tipo "de programador"), útil para resaltar fragmentos de código dentro de una oración. -->
+        <li><strong>Selector de ID (#):</strong> Es único. Solo se debe aplicar a un único elemento en toda la página. Se define con <code>id=""</code>.</li>
+      </ul> <!-- Cierra la lista. -->
+
+      <p style="margin-top: 15px;"><strong>Ejemplo práctico de conexión:</strong></p> <!-- Párrafo con margen superior de 15px, para separarlo de la lista anterior. -->
+      <div class="caja-codigo"> <!-- Contenedor con fondo negro y fuente monoespaciada, simulando un editor de código (definido en doc.css). -->
+          <!-- HTML -->
+          &lt;!-- HTML --&gt;<br> <!-- &lt; y &gt; son "entidades HTML": representan los caracteres < y > sin que el navegador los interprete como una etiqueta real. Así se puede "escribir código HTML como texto" dentro de la página, mostrando el símbolo en vez de ejecutarlo. <br> fuerza un salto de línea manual (a diferencia de <p>, no crea un párrafo nuevo, solo baja el texto siguiente a la línea de abajo). -->
+          &lt;p&gt;Párrafo básico de etiqueta&lt;/p&gt;<br> <!-- Muestra como texto el código &lt;p&gt;...&lt;/p&gt;, seguido de un salto de línea. -->
+          &lt;p class="texto-azul"&gt;Párrafo con clase&lt;/p&gt;<br> <!-- Ejemplo de un párrafo con clase, mostrado como texto plano. -->
+          &lt;p id="parrafo-unico"&gt;Párrafo con ID único&lt;/p&gt; <!-- Ejemplo de un párrafo con id, mostrado como texto plano (sin <br> al final porque es la última línea del bloque). -->
+                </div> <!-- Cierra la primera "caja de código" (ejemplo de HTML). -->
+
+                <div class="caja-codigo"> <!-- Segunda caja de código: el CSS asociado al ejemplo anterior. -->
+          /* CSS Asociado */<br> <!-- Comentario de CSS mostrado como texto, seguido de salto de línea. -->
+          p { color: gray; } /* Todos los párrafos serán grises */<br> <!-- Ejemplo de selector de etiqueta: aplica a TODOS los <p> de la página. -->
+          .texto-azul { color: blue; font-weight: bold; } /* Aplica solo a la clase */<br> <!-- Ejemplo de selector de clase (el punto antes del nombre): solo afecta a elementos con class="texto-azul". -->
+          #parrafo-unico { color: orange; font-size: 20px; } /* Aplica solo a este ID */ <!-- Ejemplo de selector de ID (el numeral antes del nombre): solo afecta al único elemento con id="parrafo-unico". -->
+                </div> <!-- Cierra la segunda caja de código. -->
+          </article> <!-- Cierra la sección "Selectores y Ejemplos". -->
+
+    <!-- 5. TABLA DE PROPIEDADES MÁS IMPORTANTES -->
+    <article class="doc-seccion"> <!-- Quinta sección: tabla de propiedades CSS. -->
+      <h3>5. Tabla Investigativa de Propiedades CSS</h3> <!-- Subtítulo. -->
+      <p>Listado de las propiedades más utilizadas en el desarrollo profesional para controlar estilos y estructuras:</p> <!-- Párrafo introductorio. -->
+
+      <div class="tabla-contenedor"> <!-- Contenedor con overflow-x: auto (definido en doc.css): si la tabla no cabe en pantallas angostas, el scroll horizontal queda contenido AQUÍ, sin desbordar toda la página (el mismo principio que aplicamos antes en tu otro proyecto). -->
+        <table class="tabla-css"> <!-- Abre la tabla. class="tabla-css" le da ancho 100%, bordes y tipografía definidos en doc.css. -->
+          <thead> <!-- "table head": agrupa semánticamente la(s) fila(s) de encabezado, separándolas del cuerpo de datos. -->
+            <tr> <!-- Fila de encabezados. -->
+              <th>Propiedad CSS</th> <!-- Encabezado de la 1ª columna. -->
+              <th>Acción / Descripción</th> <!-- Encabezado de la 2ª columna. -->
+            </tr> <!-- Cierra la fila de encabezados. -->
+          </thead> <!-- Cierra el grupo de encabezado. -->
+          <tbody> <!-- "table body": agrupa semánticamente todas las filas de datos (a diferencia de thead). -->
+            <tr> <!-- Fila 1 de datos. -->
+              <td><code>color</code></td> <!-- Celda con el nombre de la propiedad, en fuente de código gracias a <code>. -->
+              <td>Modifica el color del texto del elemento.</td> <!-- Celda con la descripción. -->
+            </tr> <!-- Cierra fila 1. -->
+            <tr> <!-- Fila 2 de datos. -->
+              <td><code>background-color</code></td>
+              <td>Define el color de fondo de un contenedor o elemento.</td>
+            </tr> <!-- Cierra fila 2. -->
+            <tr> <!-- Fila 3. -->
+              <td><code>font-size</code></td>
+              <td>Establece el tamaño de la tipografía (en px, rem, em).</td>
+            </tr> <!-- Cierra fila 3. -->
+            <tr> <!-- Fila 4. -->
+              <td><code>font-family</code></td>
+              <td>Asigna la familia tipográfica o tipo de letra.</td>
+            </tr> <!-- Cierra fila 4. -->
+            <tr> <!-- Fila 5. -->
+              <td><code>margin</code></td>
+              <td>Crea espacio por fuera de los límites del elemento (separación externa).</td>
+            </tr> <!-- Cierra fila 5. -->
+            <tr> <!-- Fila 6. -->
+              <td><code>padding</code></td>
+              <td>Crea espacio por dentro del elemento (distancia entre el contenido y su borde).</td>
+            </tr> <!-- Cierra fila 6. -->
+            <tr> <!-- Fila 7. -->
+              <td><code>border</code></td>
+              <td>Dibuja una línea alrededor del elemento (grosor, estilo y color).</td>
+            </tr> <!-- Cierra fila 7. -->
+            <tr> <!-- Fila 8. -->
+              <td><code>width</code> / <code>height</code></td> <!-- Dos fragmentos de código en la misma celda, separados por " / ". -->
+              <td>Establecen el ancho y el alto del elemento respectivamente.</td>
+            </tr> <!-- Cierra fila 8. -->
+            <tr> <!-- Fila 9. -->
+              <td><code>display</code></td>
+              <td>Controla el comportamiento de renderizado del elemento (block, inline, flex, grid, none).</td>
+            </tr> <!-- Cierra fila 9. -->
+            <tr> <!-- Fila 10. -->
+              <td><code>position</code></td>
+              <td>Define el método de posicionamiento en el espacio de la pantalla (static, relative, absolute, fixed).</td>
+            </tr> <!-- Cierra fila 10. -->
+          </tbody> <!-- Cierra el cuerpo de la tabla. -->
+        </table> <!-- Cierra la tabla completa. -->
+      </div> <!-- Cierra el contenedor con scroll de la tabla. -->
+    </article> <!-- Cierra la sección de la tabla de propiedades. -->
+  </main> <!-- Cierra el contenido principal de la pantalla "Documento". -->
+
+    <footer class="doc-footer"> <!-- Pie de la pantalla "Documento". -->
+    <a href="#menu-principal" class="btn_2">Volver al Menú</a> <!-- Enlace de regreso al menú principal. class="btn_2" le da apariencia de botón rojo/vino. -->
+  </footer> <!-- Cierra el pie de esta pantalla. -->
+
+  </div> <!-- Cierra la pantalla completa "Documento" (el div abierto con id="documento"). -->
+
+</body> <!-- Cierra el cuerpo: fin de todo el contenido visible. -->
+</html> <!-- Cierra la etiqueta raíz. Fin del documento. -->
