@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linea de tiempo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <div class="wrap">
+ 
+  <div class="hero">
+    <div class="eyebrow">Actividad 6 · Línea de tiempo</div>
+    <h1>De <span class="grad">1G a 6G</span>: la evolución de la conectividad móvil</h1>
+    <p>Cada generación resolvió el límite de la anterior: de la simple llamada de voz a una red que se autogestiona con inteligencia artificial y conecta miles de dispositivos por metro cuadrado.</p>
+  </div>
+ 
+  <div class="timeline-section">
+    <div class="track-wrap">
+      <div class="track-line"></div>
+      <div class="track">
+ 
+        <div class="node g1">
+          <div class="card top">
+            <div class="gen">1G</div>
+            <div class="year">1979–1983</div>
+            <div class="bars"><i class="on" style="height:4px"></i><i style="height:7px"></i><i style="height:10px"></i><i style="height:13px"></i><i style="height:16px"></i><i style="height:19px"></i></div>
+            <div class="desc">Analógica. Solo voz, sin datos ni cifrado.</div>
+            <button class="more-btn" onclick="openModal('g1')">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+          <div class="dot"></div>
+        </div>
+ 
+        <div class="node g2">
+          <div class="card bottom">
+            <div class="gen">2G</div>
+            <div class="year">1991 · GSM</div>
+            <div class="bars"><i class="on" style="height:4px"></i><i class="on" style="height:7px"></i><i style="height:10px"></i><i style="height:13px"></i><i style="height:16px"></i><i style="height:19px"></i></div>
+            <div class="desc">Digital. Llegan el SMS y la voz cifrada.</div>
+            <button class="more-btn" onclick="openModal('g2')">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+          <div class="dot"></div>
+        </div>
+ 
+        <div class="node g3">
+          <div class="card top">
+            <div class="gen">3G</div>
+            <div class="year">2001 · UMTS</div>
+            <div class="bars"><i class="on" style="height:4px"></i><i class="on" style="height:7px"></i><i class="on" style="height:10px"></i><i style="height:13px"></i><i style="height:16px"></i><i style="height:19px"></i></div>
+            <div class="desc">Internet móvil y videollamada.</div>
+            <button class="more-btn" onclick="openModal('g3')">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+          <div class="dot"></div>
+        </div>
+ 
+        <div class="node g4">
+          <div class="card bottom">
+            <div class="gen">4G</div>
+            <div class="year">2009 · LTE</div>
+            <div class="bars"><i class="on" style="height:4px"></i><i class="on" style="height:7px"></i><i class="on" style="height:10px"></i><i class="on" style="height:13px"></i><i style="height:16px"></i><i style="height:19px"></i></div>
+            <div class="desc">Banda ancha real: streaming HD y apps.</div>
+            <button class="more-btn" onclick="openModal('g4')">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+          <div class="dot"></div>
+        </div>
+ 
+        <div class="node g5">
+          <div class="card top">
+            <div class="gen">5G</div>
+            <div class="year">2019 · NR</div>
+            <div class="bars"><i class="on" style="height:4px"></i><i class="on" style="height:7px"></i><i class="on" style="height:10px"></i><i class="on" style="height:13px"></i><i class="on" style="height:16px"></i><i style="height:19px"></i></div>
+            <div class="desc">Latencia ~1 ms. Habilita el IoT masivo.</div>
+            <button class="more-btn" onclick="openModal('g5')">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+          <div class="dot"></div>
+        </div>
+ 
+        <div class="node g6">
+          <div class="card bottom">
+            <div class="gen">6G</div>
+            <div class="year">Est. 2029 · Comercial ~2030</div>
+            <div class="bars"><i class="on" style="height:4px"></i><i class="on" style="height:7px"></i><i class="on" style="height:10px"></i><i class="on" style="height:13px"></i><i class="on" style="height:16px"></i><i class="on" style="height:19px"></i></div>
+            <div class="desc">IA nativa en la red. IoT masivo + inmersivo.</div>
+            <button class="more-btn" onclick="openModal('g6')">Ver más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+          </div>
+          <div class="dot"></div>
+        </div>
+ 
+      </div>
+    </div>
+  </div>
+ 
+  <div class="qa">
+    <div class="qa-item">
+      <div class="q"><span class="n">01</span> ¿Cómo influirá 6G en el desarrollo del Internet de las Cosas (IoT)?</div>
+      <div class="a">6G está diseñada desde el inicio para soportar muchos más dispositivos por km² que 5G: IoT verdaderamente masivo en ciudades inteligentes, agricultura de precisión, industria 4.0 y salud remota. Su latencia de 0,1–1 ms hace viable el control robótico industrial y la sincronización de redes eléctricas inteligentes en tiempo real.</div>
+    </div>
+ 
+    <div class="qa-item">
+      <div class="q"><span class="n">02</span> ¿Qué nuevas aplicaciones y soluciones de software podrán desarrollarse para IoT mediante 6G?</div>
+      <div class="a">
+        <ul>
+          <li>Gemelos digitales en tiempo real de fábricas, ciudades o cuerpos humanos.</li>
+          <li>Mantenimiento predictivo industrial con miles de sensores por planta.</li>
+          <li>Vehículos autónomos y drones coordinados con la infraestructura vial.</li>
+          <li>Realidad extendida (XR) y comunicación holográfica para telemedicina y educación.</li>
+          <li>Gestión energética distribuida en redes eléctricas inteligentes.</li>
+        </ul>
+      </div>
+    </div>
+ 
+    <div class="qa-item">
+      <div class="q"><span class="n">03</span> ¿Qué papel tendrán la inteligencia artificial y la automatización en 6G e IoT?</div>
+      <div class="a">6G integra la IA como parte del diseño de la red, no como una capa añadida: la infraestructura se autoconfigura, se autooptimiza y se autorrepara, priorizando recursos según la demanda en tiempo real. Para el IoT, esto significa dispositivos con IA embebida capaces de decidir localmente, sin depender de enviar todo a la nube — automatización más rápida, eficiente y sostenible en fábricas, hogares y ciudades.</div>
+    </div>
+  </div>
+ 
+  <footer>FUENTES: 3GPP RELEASE 20/21 · UIT IMT-2030 · DATOS 2026</footer>
+</div>
+ 
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar">✕</button>
+    <div class="modal-badge" id="modalBadge">1G</div>
+    <div class="modal-year" id="modalYear">1979–1983</div>
+    <div id="modalBody"></div>
+    <div class="img-grid" id="modalImgGrid"></div>
+  </div>
+</div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
